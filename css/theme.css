@@ -1,0 +1,1199 @@
+/* =========================================================
+   DBSDV COLLECTION — FINAL DESIGN THEME
+   既存機能を変えず、既存CSSを最後に読み込んで見た目だけ統一
+   ========================================================= */
+
+:root {
+  --primary: #b88924;
+  --primary-dark: #8f6919;
+  --success: #4f8a63;
+  --danger: #c84d4d;
+
+  --background: #f2f1ee;
+  --surface: #ffffff;
+  --surface-soft: #f8f7f4;
+
+  --border: #d8d4cc;
+  --border-light: #e9e6df;
+
+  --text: #242321;
+  --text-light: #716d66;
+
+  --radius: 10px;
+  --radius-lg: 14px;
+
+  --shadow: 0 3px 14px rgba(35, 32, 26, 0.07);
+  --shadow-hover: 0 8px 22px rgba(35, 32, 26, 0.12);
+  --transition: 0.2s ease;
+}
+
+/* =========================
+   全体
+   ========================= */
+
+html {
+  background: var(--background);
+}
+
+body {
+  margin: 0;
+  padding: 12px 24px 78px;
+  font-family:
+    "Yu Gothic UI", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+  background: var(--background);
+  color: var(--text);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button,
+select,
+input[type="checkbox"],
+input[type="radio"] {
+  accent-color: var(--primary);
+}
+
+/* =========================
+   ヘッダー
+   ========================= */
+
+header {
+  position: relative;
+  text-align: center;
+}
+
+h1 {
+  margin: 0 0 18px;
+  font-size: 22px;
+  line-height: 1.3;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.header-top {
+  min-height: 78px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 10px;
+}
+
+.logo {
+  height: 78px;
+  width: auto;
+  object-fit: contain;
+}
+
+.home-button {
+  position: fixed;
+  top: calc(env(safe-area-inset-top) + 14px);
+  right: 18px;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--text);
+  font-size: 23px;
+  line-height: 1;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8px);
+  z-index: 9999;
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition);
+}
+
+.home-button:hover {
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.13);
+}
+
+.home-button:active {
+  transform: scale(0.94);
+}
+
+/* =========================
+   検索・フィルター
+   ========================= */
+
+.filters {
+  max-width: 1180px;
+  margin: 0 auto 18px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+}
+
+.filter-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-group {
+  width: 100%;
+}
+
+.filters input[type="text"],
+.filters select,
+.search-group input {
+  min-height: 42px;
+  box-sizing: border-box;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--text);
+  padding: 9px 12px;
+  font-size: 15px;
+  outline: none;
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition),
+    background var(--transition);
+}
+
+.filters input[type="text"]:focus,
+.filters select:focus,
+.search-group input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(184, 137, 36, 0.13);
+}
+
+.filter-row select {
+  width: 220px;
+}
+
+.select-group {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  width: 100%;
+}
+
+.select-group select {
+  width: 100%;
+  min-width: 0;
+}
+
+.search-options,
+.option-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  margin-top: 2px;
+}
+
+.search-options label,
+.option-row label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 30px;
+  color: var(--text-light);
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.search-options input[type="checkbox"],
+.option-row input[type="checkbox"] {
+  width: 17px;
+  height: 17px;
+  margin: 0;
+}
+
+.result-row {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  margin-top: 2px;
+}
+
+#resetFilter {
+  width: auto;
+  height: 38px;
+  padding: 0 15px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-soft);
+  color: var(--text-light);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background var(--transition),
+    border-color var(--transition),
+    color var(--transition);
+}
+
+#resetFilter:hover {
+  background: #fff;
+  border-color: #c7c1b5;
+  color: var(--text);
+}
+
+#resultCount {
+  color: var(--text-light);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* =========================
+   一覧見出し・PDF
+   ========================= */
+
+.print-row {
+  max-width: 1180px;
+  margin: 0 auto 8px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+#printCardsButton {
+  min-height: 34px;
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--text-light);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+#printCardsButton:hover {
+  border-color: var(--primary);
+  color: var(--primary-dark);
+}
+
+/* =========================
+   カード一覧
+   ========================= */
+
+#cards {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.card {
+  position: relative;
+  min-width: 0;
+  padding: 10px;
+  background: #fff;
+  border: 1px solid #e6e2da;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(35, 32, 26, 0.06);
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    border-color var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  border-color: #d6cdbd;
+  box-shadow: var(--shadow-hover);
+}
+
+.card-header {
+  min-height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 7px;
+  margin-bottom: 7px;
+}
+
+.card-left {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+  flex: 1;
+}
+
+.owned-btn {
+  flex: 0 0 auto;
+  cursor: pointer;
+  font-size: 17px;
+  line-height: 1;
+  color: #9b978f;
+  transition:
+    transform var(--transition),
+    color var(--transition);
+}
+
+.owned-btn:hover {
+  color: var(--primary);
+  transform: scale(1.08);
+}
+
+.card-id {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #4e4b46;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+
+.card img {
+  width: 100%;
+  display: block;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #eee;
+}
+
+.card-name {
+  margin-top: 9px;
+  min-height: 24px;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.card.owned-card {
+  border: 2px solid #c69a36;
+  box-shadow: 0 3px 13px rgba(198, 154, 54, 0.16);
+}
+
+.card.owned-card:hover {
+  border-color: #b88924;
+  box-shadow: 0 8px 22px rgba(184, 137, 36, 0.18);
+}
+
+/* =========================
+   バッジ
+   ========================= */
+
+.rarity-badge,
+.parallel-badge,
+.count-tag {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border-radius: 6px;
+  line-height: 1;
+  font-weight: 800;
+}
+
+.rarity-badge {
+  min-width: 24px;
+  padding: 3px 5px;
+  font-size: 9px;
+  color: #fff;
+}
+
+.parallel-badge {
+  padding: 3px 6px;
+  margin-left: 3px;
+  background: #d4af37;
+  color: #211a0a;
+  font-size: 10px;
+}
+
+.count-tag {
+  padding: 3px 6px;
+  background: var(--primary);
+  color: #fff;
+  font-size: 11px;
+}
+
+/* =========================
+   下部ナビ
+   ========================= */
+
+.bottom-nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  min-height: 58px;
+  display: flex;
+  background: rgba(255, 255, 255, 0.97);
+  border-top: 1px solid var(--border-light);
+  box-shadow: 0 -4px 18px rgba(35, 32, 26, 0.06);
+  padding: 4px 0 env(safe-area-inset-bottom);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+}
+
+.bottom-nav button {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  color: #85817a;
+  padding: 7px 2px 5px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    color var(--transition),
+    background var(--transition);
+}
+
+.bottom-nav button:hover {
+  background: #faf9f7;
+  color: var(--text);
+}
+
+.bottom-nav button.active {
+  color: var(--primary-dark);
+  font-weight: 800;
+}
+
+/* =========================
+   共通カード・ページ
+   ========================= */
+
+.setting-card,
+.collection-summary,
+.collection-card,
+.deck-card,
+.master-pupil-character,
+.master-pupil-item,
+#unopenedPackList > div {
+  border-color: var(--border-light);
+  box-shadow: var(--shadow);
+}
+
+.setting-card,
+.collection-summary,
+.collection-card,
+.deck-card {
+  background: #fff;
+  border-radius: var(--radius-lg);
+}
+
+.setting-card {
+  padding: 20px;
+}
+
+.collection-summary {
+  padding: 20px;
+}
+
+.collection-card {
+  padding: 18px;
+}
+
+.deck-card {
+  padding: 18px;
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition);
+}
+
+.deck-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* =========================
+   コレクション
+   ========================= */
+
+.collection-title {
+  color: var(--text);
+}
+
+.collection-count {
+  color: var(--text);
+}
+
+.collection-percent {
+  color: var(--primary-dark);
+}
+
+.collection-complete {
+  color: var(--success);
+}
+
+.collection-card.red,
+.collection-card.orange,
+.collection-card.yellow,
+.collection-card.green,
+.collection-card.complete,
+.collection-card.none {
+  border-left-width: 4px;
+}
+
+.collection-card.red {
+  border-left-color: #d95b5b;
+}
+.collection-card.orange {
+  border-left-color: #d99038;
+}
+.collection-card.yellow {
+  border-left-color: #c8a53a;
+}
+.collection-card.green {
+  border-left-color: #5b956b;
+}
+.collection-card.complete {
+  border-left-color: var(--primary);
+}
+.collection-card.none {
+  border-left-color: #ddd8cf;
+}
+
+progress {
+  height: 10px;
+}
+
+progress::-webkit-progress-bar {
+  background: #ebe9e4;
+  border-radius: 999px;
+}
+
+.progress-red::-webkit-progress-value {
+  background: #d95b5b;
+}
+.progress-orange::-webkit-progress-value {
+  background: #d99038;
+}
+.progress-yellow::-webkit-progress-value {
+  background: #c8a53a;
+}
+.progress-green::-webkit-progress-value {
+  background: #5b956b;
+}
+.progress-complete::-webkit-progress-value {
+  background: var(--primary);
+}
+
+#collectionPercent {
+  color: var(--primary-dark);
+}
+
+/* =========================
+   デッキ
+   ========================= */
+
+#newDeckBtn {
+  background: var(--primary);
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(184, 137, 36, 0.18);
+}
+
+#newDeckBtn:hover {
+  background: var(--primary-dark);
+}
+
+.deck-slot,
+.editor-slot {
+  border-color: #cfc9be;
+  background: #faf9f6;
+}
+
+.edit-deck {
+  background: var(--success);
+}
+
+.delete-deck,
+#resetDeckBtn {
+  background: var(--danger);
+}
+
+#saveDeckBtn {
+  background: var(--primary);
+}
+
+#saveDeckBtn:hover {
+  background: var(--primary-dark);
+}
+
+/* =========================
+   未開封パック
+   ========================= */
+
+#unopenedPackList > div {
+  border-radius: 10px;
+  background: #fff;
+}
+
+.pack-name {
+  color: var(--text);
+}
+
+#unopenedPackList button {
+  background: #f1eee8;
+  color: var(--text);
+}
+
+#unopenedPackList button:hover {
+  background: #e6e1d7;
+}
+
+#unopenedPackList .pack-controls button:last-child {
+  background: var(--danger);
+  color: #fff;
+}
+
+/* =========================
+   師弟レベル
+   ========================= */
+
+#masterPupilPage {
+  max-width: 900px;
+}
+
+.master-pupil-character,
+.master-pupil-item {
+  background: #fff;
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+}
+
+.master-pupil-character-header:hover,
+.master-pupil-header:hover {
+  background: #faf9f6;
+}
+
+.master-pupil-character-toggle,
+.master-pupil-toggle,
+.master-pupil-minus,
+.master-pupil-plus {
+  background: #f0ede7;
+  color: var(--text);
+}
+
+.master-pupil-minus:hover,
+.master-pupil-plus:hover {
+  background: #e5dfd4;
+}
+
+.master-pupil-gauge {
+  background: #e7e3dc;
+}
+
+.master-pupil-gauge-fill {
+  background: var(--primary);
+}
+
+/* =========================
+   ボタン共通
+   ========================= */
+
+.btn {
+  border-radius: 9px;
+  box-shadow: none;
+}
+
+.btn-primary {
+  background: var(--primary);
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+}
+
+.btn-success {
+  background: var(--success);
+}
+
+.btn-danger {
+  background: var(--danger);
+}
+
+/* =========================
+   モーダル
+   ========================= */
+
+.modal {
+  background: rgba(28, 25, 20, 0.78);
+  backdrop-filter: blur(3px);
+}
+
+.modal-content {
+  background: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.nav-btn,
+.close-btn {
+  background: #f1eee8;
+  color: var(--text);
+}
+
+.nav-btn:hover,
+.close-btn:hover {
+  background: #e5dfd4;
+}
+
+#modalRarity {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+  border-bottom-color: #e5e1d9;
+}
+
+.unit-chip {
+  background: #f0ede7;
+  color: #4d4942;
+}
+
+#modalMemo {
+  border-color: var(--border);
+}
+
+#modalMemo:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(184, 137, 36, 0.13);
+}
+
+.owned-section {
+  border-color: var(--border-light);
+  background: #faf9f6;
+}
+
+/* =========================
+   設定
+   ========================= */
+
+.setting-card button {
+  border: 1px solid var(--border-light);
+  border-radius: 9px;
+}
+
+.excel-import-card {
+  border-color: var(--border-light);
+  background: #fff;
+}
+
+/* =========================
+   空状態
+   ========================= */
+
+.empty-message {
+  color: var(--text-light);
+}
+
+/* =========================
+   印刷
+   ========================= */
+
+@media print {
+  body {
+    background: #fff;
+    padding: 0;
+  }
+
+  .bottom-nav,
+  .home-button,
+  .filters,
+  .print-row {
+    display: none !important;
+  }
+}
+
+/* =========================================================
+   スマホ
+   ========================================================= */
+
+@media (max-width: 700px) {
+  body {
+    padding: 6px 8px 72px;
+  }
+
+  .header-top {
+    min-height: 62px;
+    margin-bottom: 7px;
+  }
+
+  .logo {
+    height: 62px;
+  }
+
+  .home-button {
+    top: calc(env(safe-area-inset-top) + 8px);
+    right: 8px;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    font-size: 20px;
+  }
+
+  h1 {
+    font-size: 19px;
+    margin-bottom: 12px;
+  }
+
+  .filters {
+    padding: 12px;
+    gap: 9px;
+    margin-bottom: 12px;
+    border-radius: 12px;
+  }
+
+  .filter-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 9px;
+  }
+
+  .filters input[type="text"],
+  .filters select,
+  .search-group input {
+    width: 100%;
+    min-width: 0;
+    min-height: 40px;
+    font-size: 14px;
+  }
+
+  .select-group {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .select-group select {
+    width: 100%;
+  }
+
+  .search-options,
+  .option-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 8px;
+  }
+
+  .search-options label,
+  .option-row label {
+    font-size: 12px;
+    min-height: 29px;
+  }
+
+  .search-options input[type="checkbox"],
+  .option-row input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+  }
+
+  .result-row {
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  #resetFilter {
+    height: 36px;
+    padding: 0 12px;
+    font-size: 12px;
+  }
+
+  #cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 7px;
+  }
+
+  .card {
+    padding: 5px;
+    border-radius: 9px;
+  }
+
+  .card-header {
+    min-height: 18px;
+    margin-bottom: 4px;
+    gap: 3px;
+  }
+
+  .card-left {
+    gap: 3px;
+  }
+
+  .owned-btn {
+    font-size: 13px;
+  }
+
+  .card-id {
+    font-size: 9px;
+    letter-spacing: -0.25px;
+  }
+
+  .rarity-badge {
+    min-width: 21px;
+    padding: 2px 3px;
+    font-size: 8px;
+    border-radius: 5px;
+  }
+
+  .parallel-badge {
+    padding: 2px 4px;
+    font-size: 8px;
+  }
+
+  .card-name {
+    min-height: 19px;
+    margin-top: 5px;
+    font-size: 11px;
+  }
+
+  .card.owned-card {
+    border-width: 2px;
+  }
+
+  .print-row {
+    margin-bottom: 5px;
+  }
+
+  #printCardsButton {
+    min-height: 30px;
+    padding: 4px 9px;
+    font-size: 11px;
+  }
+
+  .bottom-nav {
+    min-height: 55px;
+  }
+
+  .bottom-nav button {
+    padding: 6px 1px 4px;
+    font-size: 10px;
+  }
+
+  .modal {
+    padding: 10px;
+  }
+
+  .modal-content {
+    width: 96vw;
+    max-height: 94vh;
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  .collection-card,
+  .deck-card,
+  .setting-card {
+    padding: 14px;
+  }
+}
+
+/* 小型スマホ */
+@media (max-width: 380px) {
+  #cards {
+    gap: 5px;
+  }
+
+  .card {
+    padding: 4px;
+  }
+
+  .card-id {
+    font-size: 8px;
+  }
+
+  .card-name {
+    font-size: 10px;
+  }
+
+  .rarity-badge {
+    min-width: 19px;
+    font-size: 7px;
+  }
+
+  .filters {
+    padding: 10px;
+  }
+
+  .select-group {
+    gap: 6px;
+  }
+}
+
+/* ========================================
+   スマホ：絞り込み条件を折りたたむ
+======================================== */
+
+.advanced-filters {
+  width: 100%;
+}
+
+/* PCでは常に表示 */
+.advanced-filters > summary {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  .advanced-filters {
+    margin-top: 10px;
+  }
+
+  .advanced-filters > summary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 40px;
+    padding: 8px 14px;
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    background: var(--surface-soft);
+
+    color: var(--text);
+    font-size: 14px;
+    font-weight: bold;
+
+    cursor: pointer;
+    list-style: none;
+  }
+
+  /* Safari/Chromeの標準三角を消す */
+  .advanced-filters > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .advanced-filters > summary::before {
+    content: "＋";
+    margin-right: 7px;
+    font-size: 16px;
+  }
+
+  .advanced-filters[open] > summary::before {
+    content: "−";
+  }
+
+  /* 開いた中身 */
+  .advanced-filters[open] {
+    padding-bottom: 2px;
+  }
+
+  .advanced-filters[open] .filter-row {
+    margin-top: 8px;
+  }
+
+  .advanced-filters[open] .option-row {
+    margin-top: 8px;
+  }
+
+  .advanced-filters[open] .print-row {
+    margin-top: 6px;
+  }
+}
+
+/* ========================================
+   スマホ：詳細フィルター折りたたみ
+======================================== */
+
+.advanced-filters {
+  width: 100%;
+}
+
+/* PCでは見出しを隠して、中身を常時表示 */
+.advanced-filters > summary {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  /* 折りたたみボタンを表示 */
+  .advanced-filters > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    min-height: 42px;
+    padding: 9px 14px;
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    background: var(--surface-soft);
+
+    color: var(--text);
+    font-size: 14px;
+    font-weight: bold;
+
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .advanced-filters > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .advanced-filters > summary::after {
+    content: "＋";
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  .advanced-filters[open] > summary::after {
+    content: "−";
+  }
+
+  /* 開いたときだけ中身に少し余白 */
+  .advanced-filters[open] > .filter-row {
+    margin-top: 8px;
+  }
+
+  .advanced-filters[open] > .option-row {
+    margin-top: 8px;
+  }
+
+  .advanced-filters[open] > .print-row {
+    margin-top: 6px;
+  }
+}
+
+.site-title-wrap {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.site-title {
+  margin: 0;
+  font-family: "DotGothic16", sans-serif;
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+}
+
+.site-subtitle {
+  margin: 2px 0 0;
+  font-family: "DotGothic16", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: 0.06em;
+}
+
+/* ページ切り替え */
+[hidden] {
+  display: none !important;
+}

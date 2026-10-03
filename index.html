@@ -1,14 +1,17 @@
 <!doctype html>
 <html lang="ja">
   <head>
+    <link
+  href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap"
+  rel="stylesheet"
+/>
+
     <meta charset="UTF-8" />
 
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
-
-    <title>DBSDV Collection</title>
 
     <link rel="manifest" href="manifest.json">
 
@@ -29,6 +32,7 @@
     <link rel="stylesheet" href="css/modal.css" />
     <link rel="stylesheet" href="css/unopened.css">
     <link rel="stylesheet" href="css/master-pupil.css" />
+    <link rel="stylesheet" href="css/theme.css">
   </head>
 
   <body>
@@ -36,122 +40,142 @@
       <input type="file" id="restoreFile" accept=".json" hidden />
     </div>
 
-    <header>
-      <img
-        src="images/logo.webp"
-        alt="ドラゴンボールスーパーダイバーズ図鑑"
-        class="logo"
-      />
-      <button class="home-button" onclick="location.reload()" title="ホーム">
-        🏠
-      </button>
-    </header>
+<header>
+  <div class="site-title-wrap">
+  <h1 class="site-title">DBSDV Collection</h1>
+  <p class="site-subtitle">− 集めて、見つけて、楽しむ −</p>
+</div>
+
+  <button class="home-button" onclick="location.reload()" title="ホーム">
+    🏠
+  </button>
+</header>
 
     <main>
       <section id="cardsPage">
-        <section class="filters">
+  <section class="filters">
 
-          <div class="filter-row">
-  <div class="search-group">
-    <input
-      type="text"
-      id="search"
-      placeholder="カード名・カード番号で検索"
-    />
+  <!-- 検索 -->
+  <div class="filter-row">
+    <div class="search-group">
+      <input
+        type="text"
+        id="search"
+        placeholder="カード名・カード番号で検索"
+      />
 
-    <div class="search-options">
-      <label>
-        <input type="checkbox" id="searchName" />
-        カード名
-      </label>
+      <div class="search-options">
+        <label>
+          <input type="checkbox" id="searchName" />
+          カード名
+        </label>
 
-      <label>
-        <input type="checkbox" id="searchUnit" />
-        ユニット相手
-      </label>
+        <label>
+          <input type="checkbox" id="searchUnit" />
+          ユニット相手
+        </label>
+      </div>
     </div>
   </div>
-</div>
 
-          <div class="filter-row">
-            <div class="select-group">
-              <select id="seriesFilter">
-                <option value="">すべての弾</option>
-              </select>
 
-              <select id="promoFilter" hidden>
-                <option value="">入手方法（すべて）</option>
-              </select>
+  <!-- 詳細絞り込み -->
+  <details class="advanced-filters" open>
+    <summary>絞り込み条件</summary>
 
-              <select id="rarityFilter">
-                <option value="">すべてのレアリティ</option>
-              </select>
+    <div class="filter-row">
+      <div class="select-group">
 
-              <select id="typeFilter">
-                <option value="">すべてのタイプ</option>
-                <option value="B">ブースト</option>
-                <option value="L">リミテッド</option>
-                <option value="I">インパクト</option>
-                <option value="R">ラッシュ</option>
-              </select>
+        <select id="seriesFilter">
+          <option value="">すべての弾</option>
+        </select>
 
-              <select id="actionSkillFilter">
-                <option value="">すべてのアクションスキル</option>
-              </select>
+        <select id="promoFilter" hidden>
+          <option value="">入手方法（すべて）</option>
+        </select>
 
-              <select id="energyFilter">
-  <option value="">すべての気力</option>
-  <option value="1">気力 1.0〜</option>
-  <option value="2">気力 2.0〜</option>
-  <option value="3">気力 3.0〜</option>
-</select>
+        <select id="rarityFilter">
+          <option value="">すべてのレアリティ</option>
+        </select>
 
-<div id="formSearchArea" hidden>
-  <select id="formSearchSelect">
-    <option value="">形態を選択</option>
-  </select>
-</div>
+        <select id="typeFilter">
+          <option value="">すべてのタイプ</option>
+          <option value="B">ブースト</option>
+          <option value="L">リミテッド</option>
+          <option value="I">インパクト</option>
+          <option value="R">ラッシュ</option>
+        </select>
 
-              <button id="resetFilter">リセット</button>
-            </div>
-          </div>
+        <select id="actionSkillFilter">
+          <option value="">すべてのアクションスキル</option>
+        </select>
 
-          <div class="filter-row option-row">
-  <label>
-    <input type="checkbox" id="parallelOnly" />
-    パラレル
-  </label>
+        <select id="energyFilter">
+          <option value="">すべての気力</option>
+          <option value="1">気力 1.0〜</option>
+          <option value="2">気力 2.0〜</option>
+          <option value="3">気力 3.0〜</option>
+        </select>
 
-  <label>
-    <input type="checkbox" id="duplicateOnly" />
-    2枚以上のカード
-  </label>
+        <div id="formSearchArea" hidden>
+          <select id="formSearchSelect">
+            <option value="">形態を選択</option>
+          </select>
+        </div>
 
-  <label>
-    <input type="checkbox" id="ownedOnly" />
-    所持カード
-  </label>
+        <button id="resetFilter">リセット</button>
 
-  <label>
-    <input type="checkbox" id="wantedOnly" />
-    探しているカード
-  </label>
-</div>
+      </div>
+    </div>
 
-<div class="print-row">
-<button id="pdfCardsButton">
-  📄 PDF
-</button>
-</div>
-          <div class="result-row">
-            <span id="resultCount"></span>
-          </div>
-        </section>
 
-        <section id="cards"></section>
-      </section>
+    <div class="filter-row option-row">
 
-      <section id="deckPage" hidden>
+      <label>
+        <input type="checkbox" id="parallelOnly" />
+        パラレル
+      </label>
+
+      <label>
+        <input type="checkbox" id="duplicateOnly" />
+        2枚以上のカード
+      </label>
+
+      <label>
+        <input type="checkbox" id="ownedOnly" />
+        所持カード
+      </label>
+
+      <label>
+        <input type="checkbox" id="wantedOnly" />
+        探しているカード
+      </label>
+
+    </div>
+
+
+    <div class="print-row">
+      <button id="pdfCardsButton">
+        📄 PDF
+      </button>
+    </div>
+
+  </details>
+
+
+  <!-- 件数 -->
+  <div class="result-row">
+    <span id="resultCount"></span>
+  </div>
+
+    </section>
+
+        <!-- カード一覧 -->
+    <div id="cards"></div>
+
+    </section>
+
+    <section id="deckPage" hidden>
 
         <!-- 一覧画面 -->
         <div id="deckListPage">
@@ -427,9 +451,13 @@
 
 <div id="updateStatus" class="update-status"></div>
 
-  <button id="updateButton" class="btn btn-primary">
-    🏠 アップデート
-  </button>
+<button
+  id="updateButton"
+  class="btn btn-primary"
+  style="display: none;"
+>
+  🏠 アップデート
+</button>
 </div>
 
       </section>
@@ -626,15 +654,8 @@
   <p id="modalAcquisition"></p>
 </div>
 
-<div class="modal-section">
-  <h3>📝 メモ</h3>
-
-  <textarea
-    id="modalMemo"
-    rows="4"
-    placeholder="自由にメモできます"
-  ></textarea>
-</div>
+<!-- JS互換用（画面には表示しない） -->
+<textarea id="modalMemo" hidden></textarea>
 
 </div>
 </div>
@@ -697,55 +718,305 @@
 
       <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
 
-      <script src="js/core/app.js"></script>
-
       <script src="https://cdn.jsdelivr.net/npm/jspdf@3.0.3/dist/jspdf.umd.min.js"></script>
 
 <script>
+  window.waitingWorker = null;
+  window.serviceWorkerRegistration = null;
 
-window.waitingWorker = null;
+  const APP_VERSION_KEY = "dbsdv-app-version";
 
+  // Service Workerが切り替わったらリロード
 navigator.serviceWorker.addEventListener("controllerchange", () => {
+  const latestVersion =
+    document.getElementById("latestVersion")?.textContent;
+
+  if (latestVersion) {
+    localStorage.setItem(
+      APP_VERSION_KEY,
+      latestVersion
+    );
+  }
+
   window.location.reload();
 });
 
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", async () => {
+
+  // version.jsonを確認
+  async function checkAppVersion() {
     try {
-      const registration = await navigator.serviceWorker.register("./service-worker.js");
+      const response = await fetch("./version.json", {
+        cache: "no-store"
+      });
 
-      // 起動時に必ず更新確認
-      registration.update();
+      if (!response.ok) {
+        throw new Error("version.json の取得に失敗しました");
+      }
 
-      // 新しい Service Worker を検知
-registration.addEventListener("updatefound", () => {
-  const newWorker = registration.installing;
-  if (!newWorker) return;
+      const versionData = await response.json();
 
-  newWorker.addEventListener("statechange", () => {
-  if (
-    newWorker.state === "installed" &&
-    navigator.serviceWorker.controller
-  ) {
+      const latestVersion = versionData.version;
 
-    window.waitingWorker = newWorker;
+      const currentVersion =
+        localStorage.getItem(APP_VERSION_KEY);
 
-document.getElementById("updateStatus").textContent =
-  "🟢 新しいバージョンがあります";
+      const currentVersionElement =
+        document.getElementById("currentVersion");
 
-document.getElementById("updateButton").style.display = "block";
+      const latestVersionElement =
+        document.getElementById("latestVersion");
 
-alert("新しいバージョンがあります。\n設定タブから更新してください。");
+      const updateStatus =
+        document.getElementById("updateStatus");
+
+      const updateButton =
+        document.getElementById("updateButton");
+
+
+      // 最新バージョンを表示
+      if (latestVersionElement) {
+        latestVersionElement.textContent = latestVersion;
+      }
+
+
+      // 初回起動
+      if (!currentVersion) {
+
+        localStorage.setItem(
+          APP_VERSION_KEY,
+          latestVersion
+        );
+
+        if (currentVersionElement) {
+          currentVersionElement.textContent =
+            latestVersion;
+        }
+
+        if (updateButton) {
+          updateButton.style.display = "none";
+        }
+
+        if (updateStatus) {
+          updateStatus.textContent = "";
+        }
+
+        return;
+      }
+
+
+      // 現在のバージョンを表示
+      if (currentVersionElement) {
+        currentVersionElement.textContent =
+          currentVersion;
+      }
+
+
+      // 初期状態は非表示
+      if (updateButton) {
+        updateButton.style.display = "none";
+      }
+
+      if (updateStatus) {
+        updateStatus.textContent = "";
+      }
+
+
+      // バージョンが違えばアップデートあり
+      if (currentVersion !== latestVersion) {
+
+        if (updateStatus) {
+          updateStatus.textContent =
+            "🟢 新しいバージョンがあります";
+        }
+
+        if (updateButton) {
+          updateButton.style.display = "block";
+        }
+      }
+
+    } catch (error) {
+
+      console.error(
+        "バージョン確認エラー:",
+        error
+      );
+
+    }
+  }
+
+
+  // Service Worker
+  if ("serviceWorker" in navigator) {
+
+    window.addEventListener("load", async () => {
+
+      try {
+
+        const registration =
+          await navigator.serviceWorker.register(
+            "./service-worker.js"
+          );
+
+        window.serviceWorkerRegistration =
+          registration;
+
+
+        // 起動時に更新確認
+        await registration.update();
+
+
+        // 新しいService Workerを検知
+        registration.addEventListener(
+          "updatefound",
+          () => {
+
+            const newWorker =
+              registration.installing;
+
+            if (!newWorker) return;
+
+
+            newWorker.addEventListener(
+              "statechange",
+              () => {
+
+                if (
+                  newWorker.state === "installed" &&
+                  navigator.serviceWorker.controller
+                ) {
+
+                  window.waitingWorker =
+                    newWorker;
+
+                  const updateStatus =
+                    document.getElementById(
+                      "updateStatus"
+                    );
+
+                  const updateButton =
+                    document.getElementById(
+                      "updateButton"
+                    );
+
+
+                  if (updateStatus) {
+                    updateStatus.textContent =
+                      "🟢 新しいバージョンがあります";
+                  }
+
+                  if (updateButton) {
+                    updateButton.style.display =
+                      "block";
+                  }
+
+                }
+
+              }
+            );
+
+          }
+        );
+
+
+        // version.jsonを確認
+        await checkAppVersion();
+
+      } catch (error) {
+
+        console.error(
+          "Service Worker registration failed:",
+          error
+        );
+
+      }
+
+    });
 
   }
-});
-});
 
-    } catch (e) {
-      console.error("Service Worker registration failed:", e);
+
+  // アップデートボタン
+document.addEventListener("DOMContentLoaded", () => {
+  const updateButton =
+    document.getElementById("updateButton");
+
+  if (!updateButton) return;
+
+  updateButton.addEventListener("click", async () => {
+    const registration =
+      window.serviceWorkerRegistration;
+
+    if (!registration) {
+      console.error("Service Workerが登録されていません");
+      return;
+    }
+
+    updateButton.disabled = true;
+    updateButton.textContent = "🔄 更新中...";
+
+    try {
+      // 最新のService Workerを確認
+      await registration.update();
+
+      const worker =
+        registration.waiting ||
+        window.waitingWorker;
+
+      if (!worker) {
+        console.warn("更新待ちのService Workerがありません");
+
+        updateButton.disabled = false;
+        updateButton.textContent = "🏠 アップデート";
+        return;
+      }
+
+      // 最新バージョンを取得
+      const latestVersion =
+        document.getElementById("latestVersion")?.textContent;
+
+      // 現在バージョンを最新に更新
+      if (latestVersion) {
+        localStorage.setItem(
+          APP_VERSION_KEY,
+          latestVersion
+        );
+      }
+
+      // ボタンを消す
+      updateButton.style.display = "none";
+
+      const updateStatus =
+        document.getElementById("updateStatus");
+
+      if (updateStatus) {
+        updateStatus.textContent = "✅ アップデートしました";
+      }
+
+      // 新しいService Workerを有効化
+      worker.postMessage({
+        type: "SKIP_WAITING"
+      });
+
+    } catch (error) {
+      console.error("アップデート失敗:", error);
+
+      updateButton.disabled = false;
+      updateButton.textContent = "🏠 アップデート";
     }
   });
-}
+});
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const advancedFilters = document.querySelector(".advanced-filters");
+
+    if (!advancedFilters) return;
+
+    if (window.innerWidth <= 700) {
+      advancedFilters.removeAttribute("open");
+    }
+  });
 </script>
 
   </body>

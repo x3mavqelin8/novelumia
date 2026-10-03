@@ -291,28 +291,6 @@
   font-weight: bold;
 }
 
-/* ==========================
-   メモ
-========================== */
-
-#modalMemo {
-  width: 100%;
-  min-height: 120px;
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  resize: vertical;
-  box-sizing: border-box;
-  font-size: 15px;
-  font-family: inherit;
-}
-
-#modalMemo:focus {
-  outline: none;
-  border-color: #4caf50;
-  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.15);
-}
-
 /* ==========================================
    スマホ
 ========================================== */
@@ -526,4 +504,299 @@
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+/* ==========================================
+   詳細モーダル・最終調整
+========================================== */
+
+.modal-content {
+  background: #fff;
+  border: 1px solid #eee;
+}
+
+.modal-navigation {
+  margin-bottom: 18px;
+}
+
+.nav-center {
+  min-width: 110px;
+}
+
+#cardCount {
+  font-size: 24px;
+  line-height: 1.1;
+}
+
+.modal-top {
+  gap: 28px;
+}
+
+.modal-left {
+  width: 240px;
+}
+
+.image-switch {
+  margin-top: 10px;
+  gap: 10px;
+}
+
+.image-switch button {
+  height: 40px;
+  background: #f3f3f3;
+  color: #777;
+}
+
+.image-switch button.active,
+.image-switch button:hover {
+  background: #eee;
+}
+
+.name-rarity {
+  margin-bottom: 4px;
+}
+
+.name-rarity-top {
+  gap: 10px;
+}
+
+#modalName {
+  font-size: 28px;
+  line-height: 1.2;
+}
+
+.modal-form {
+  margin-bottom: 16px;
+  color: #555;
+}
+
+.owned-section {
+  margin: 0 0 22px;
+  padding: 14px 16px;
+  background: #faf9f6;
+  border: 1px solid #e5e1d8;
+  border-radius: 14px;
+}
+
+.owned-row {
+  gap: 10px;
+}
+
+.owned-options {
+  margin-top: 10px;
+  gap: 22px;
+}
+
+.count-control {
+  gap: 8px;
+}
+
+.count-control button {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #d3a62a;
+  border-radius: 50%;
+  background: #fff;
+  color: #a97d12;
+  font-size: 18px;
+  line-height: 1;
+  padding: 0;
+}
+
+#modalOwnedCount {
+  min-width: 28px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.stats {
+  row-gap: 10px;
+  column-gap: 18px;
+}
+
+.stats strong {
+  color: #333;
+}
+
+.stats span {
+  color: #222;
+}
+
+.modal-section {
+  margin-top: 26px;
+}
+
+.section-title {
+  gap: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 7px;
+  border-bottom: 2px solid #e8e4dc;
+}
+
+.section-title h3 {
+  font-size: 16px;
+}
+
+.section-title h4 {
+  font-size: 15px;
+}
+
+.modal-section p {
+  line-height: 1.75;
+}
+
+@media (max-width: 850px) {
+  .modal {
+    padding: 12px;
+    align-items: center;
+  }
+
+  .modal-content {
+    width: 100%;
+    max-width: 520px;
+    max-height: calc(100vh - 24px);
+    padding: 18px 16px 28px;
+    border-radius: 18px;
+  }
+
+  .modal-navigation {
+    margin-bottom: 16px;
+    gap: 14px;
+  }
+
+  .nav-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 18px;
+  }
+
+  #cardCount {
+    font-size: 23px;
+  }
+
+  .modal-top {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .modal-left {
+    width: min(220px, 72vw);
+    margin: 0 auto;
+  }
+
+  #modalImage {
+    border-radius: 10px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  .image-switch {
+    margin-top: 8px;
+    gap: 10px;
+  }
+
+  .image-switch button {
+    width: 86px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .modal-right {
+    width: 100%;
+  }
+
+  .name-rarity {
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 3px;
+  }
+
+  .name-rarity-top {
+    gap: 8px;
+    min-width: 0;
+  }
+
+  #modalName {
+    font-size: 26px;
+  }
+
+  #modalRarity {
+    padding: 5px 13px;
+    font-size: 13px;
+  }
+
+  .modal-form {
+    margin: 0 0 14px;
+    font-size: 15px;
+  }
+
+  .mistake-label {
+    margin-left: 0;
+    font-size: 14px;
+  }
+
+  .owned-section {
+    margin-bottom: 20px;
+    padding: 13px 12px;
+    border-radius: 13px;
+  }
+
+  .owned-row {
+    gap: 8px;
+  }
+
+  .owned-options {
+    gap: 18px;
+    margin-top: 9px;
+  }
+
+  .count-control {
+    gap: 7px;
+  }
+
+  .count-control button {
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+  }
+
+  #modalOwnedCount {
+    min-width: 24px !important;
+    font-size: 17px !important;
+  }
+
+  .stats {
+    grid-template-columns: minmax(110px, 1fr) minmax(0, 1.2fr);
+    row-gap: 9px;
+    column-gap: 12px;
+    font-size: 16px;
+  }
+
+  .stats span {
+    font-weight: 700;
+  }
+
+  .modal-section {
+    margin-top: 24px;
+  }
+
+  .section-title {
+    gap: 9px;
+    margin-bottom: 9px;
+    padding-bottom: 7px;
+  }
+
+  .section-title h3 {
+    font-size: 16px;
+  }
+
+  .section-title h4 {
+    font-size: 15px;
+  }
+
+  .modal-section p {
+    line-height: 1.75;
+    font-size: 16px;
+  }
 }

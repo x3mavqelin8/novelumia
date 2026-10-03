@@ -1,95 +1,89 @@
+// ============================================================
+// キャラクター・形態検索
+// カード一覧そのものの絞り込みは cardsPage.js が担当
+// ============================================================
+
 let selectedCharacterName = "";
 let selectedForm = "";
 
 const formSearchArea = document.getElementById("formSearchArea");
 const formSearchSelect = document.getElementById("formSearchSelect");
 
-search.addEventListener("input", () => {
-  const keyword = search.value.trim();
+const searchInput = document.getElementById("search");
 
+// ------------------------------------------------------------
+// キャラクター名検索
+// ------------------------------------------------------------
+
+searchInput?.addEventListener("input", () => {
+  const keyword = searchInput.value.trim();
+
+  // いったん形態検索をリセット
   selectedCharacterName = "";
   selectedForm = "";
 
-  formSearchSelect.innerHTML = `
-    <option value="">形態を選択</option>
-  `;
+  if (formSearchSelect) {
+    formSearchSelect.innerHTML = `<option value="">形態を選択</option>`;
+  }
 
-  formSearchArea.hidden = true;
+  if (formSearchArea) {
+    formSearchArea.hidden = true;
+  }
 
+  // カードデータがまだ読み込まれていなければ何もしない
+  if (!Array.isArray(window.cards)) {
+    return;
+  }
+
+  // 完全一致するキャラクター名を探す
   const forms = [
     ...new Set(
-      cards
+      window.cards
         .filter((card) => card.name === keyword && card.form)
         .map((card) => card.form),
     ),
   ];
 
+  // 形態が存在する場合だけ形態選択を表示
   if (forms.length > 0) {
     selectedCharacterName = keyword;
 
-    formSearchSelect.innerHTML = `
-      <option value="">形態を選択</option>
-      ${forms
-        .map(
-          (form) => `
-            <option value="${form}">
-              ${form}
-            </option>
-          `,
-        )
-        .join("")}
-    `;
+    if (formSearchSelect) {
+      formSearchSelect.innerHTML = `
+        <option value="">形態を選択</option>
+        ${forms
+          .map((form) => `<option value="${form}">${form}</option>`)
+          .join("")}
+      `;
+    }
 
-    formSearchArea.hidden = false;
+    if (formSearchArea) {
+      formSearchArea.hidden = false;
+    }
   }
 
-  renderCards();
+  // cardsPage.js に描画を任せる
+  if (typeof renderCards === "function") {
+    renderCards();
+  }
 });
 
-formSearchSelect.addEventListener("change", () => {
+// ------------------------------------------------------------
+// 形態選択
+// ------------------------------------------------------------
+
+formSearchSelect?.addEventListener("change", () => {
   selectedForm = formSearchSelect.value;
 
-  renderCards();
+  // cardsPage.js に描画を任せる
+  if (typeof renderCards === "function") {
+    renderCards();
+  }
 });
 
-function filterCards() {
-  const keyword = search.value.toLowerCase();
-  const energyFilter = document.getElementById("energyFilter").value;
+// ------------------------------------------------------------
+// cardsPage.js から参照できるように公開
+// ------------------------------------------------------------
 
-  filteredCards = [];
-
-  document.querySelectorAll(".card").forEach((cardDiv, index) => {
-    const card = cards[index];
-
-    let visible = true;
-
-    // 検索
-    if (
-      !card.name.toLowerCase().includes(keyword) &&
-      !card.id.toLowerCase().includes(keyword)
-    ) {
-      visible = false;
-    }
-
-    // 所持のみ
-    if (ownedOnly.checked && !card.owned) {
-      visible = false;
-    }
-
-    // 気力
-    if (energyFilter && Number(card.initialKi) < Number(energyFilter)) {
-      visible = false;
-    }
-
-    cardDiv.style.display = visible ? "" : "none";
-
-    if (visible) {
-      filteredCards.push(card);
-    }
-  });
-
-  window.currentFilteredCards = filteredCards;
-
-  document.getElementById("resultCount").textContent =
-    `表示中：${filteredCards.length}枚（全${cards.length}枚）`;
-}
+window.getSelectedCharacterName = () => selectedCharacterName;
+window.getSelectedForm = () => selectedForm;

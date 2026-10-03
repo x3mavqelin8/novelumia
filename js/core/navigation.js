@@ -1,96 +1,105 @@
-const cardsPage = document.getElementById("cardsPage");
-const deckPage = document.getElementById("deckPage");
-const collectionPage = document.getElementById("collectionPage");
-const unopenedPage = document.getElementById("unopenedPage");
-const masterPupilPage = document.getElementById("masterPupilPage");
-const settingsPage = document.getElementById("settingsPage");
+const pages = [
+  "cardsPage",
+  "deckPage",
+  "collectionPage",
+  "unopenedPage",
+  "masterPupilPage",
+  "settingsPage",
+];
 
-const tabCards = document.getElementById("tabCards");
-const tabDeck = document.getElementById("tabDeck");
-const tabCollection = document.getElementById("tabCollection");
-const tabUnopened = document.getElementById("tabUnopened");
-const tabMasterPupil = document.getElementById("tabMasterPupil");
-const tabSettings = document.getElementById("tabSettings");
+const tabs = [
+  "tabCards",
+  "tabDeck",
+  "tabCollection",
+  "tabUnopened",
+  "tabMasterPupil",
+  "tabSettings",
+];
 
-function showPage(page) {
-  cardsPage.hidden = true;
-  deckPage.hidden = true;
-  collectionPage.hidden = true;
-  unopenedPage.hidden = true;
-  masterPupilPage.hidden = true;
-  settingsPage.hidden = true;
+function showPage(pageId, tabId) {
+  // 全ページをいったん非表示
+  pages.forEach((id) => {
+    const page = document.getElementById(id);
 
-  tabCards.classList.remove("active");
-  tabDeck.classList.remove("active");
-  tabCollection.classList.remove("active");
-  tabUnopened.classList.remove("active");
-  tabMasterPupil.classList.remove("active");
-  tabSettings.classList.remove("active");
+    if (page) {
+      page.hidden = true;
+    }
+  });
 
-  if (page === "cards") {
-    cardsPage.hidden = false;
-    tabCards.classList.add("active");
-  } else if (page === "deck") {
-    deckPage.hidden = false;
-    tabDeck.classList.add("active");
-  } else if (page === "collection") {
-    collectionPage.hidden = false;
-    tabCollection.classList.add("active");
-  } else if (page === "unopened") {
-    unopenedPage.hidden = false;
-    tabUnopened.classList.add("active");
-  } else if (page === "masterPupil") {
-    masterPupilPage.hidden = false;
-    tabMasterPupil.classList.add("active");
-  } else if (page === "settings") {
-    settingsPage.hidden = false;
-    tabSettings.classList.add("active");
+  // 選択したページだけ表示
+  const targetPage = document.getElementById(pageId);
+
+  if (targetPage) {
+    targetPage.hidden = false;
+  }
+
+  // タブのactive切り替え
+  tabs.forEach((id) => {
+    const tab = document.getElementById(id);
+
+    if (tab) {
+      tab.classList.toggle("active", id === tabId);
+    }
+  });
+
+  // 各ページの再描画
+  if (pageId === "collectionPage") {
+    if (typeof renderCollection === "function") {
+      renderCollection();
+    }
+  }
+
+  if (pageId === "deckPage") {
+    if (typeof renderDecks === "function") {
+      renderDecks();
+    }
+  }
+
+  if (pageId === "unopenedPage") {
+    if (typeof renderUnopenedPacks === "function") {
+      renderUnopenedPacks();
+    }
+  }
+
+  if (pageId === "masterPupilPage") {
+    if (typeof renderMasterPupil === "function") {
+      renderMasterPupil();
+    }
   }
 }
 
-console.log("tabCards =", tabCards);
-console.log("tabDeck =", tabDeck);
-console.log("tabCollection =", tabCollection);
+// ==============================
+// タブ
+// ==============================
 
-tabCards.addEventListener("click", () => {
-  console.log("図鑑クリック");
-
-  showPage("cards");
+document.getElementById("tabCards")?.addEventListener("click", () => {
+  showPage("cardsPage", "tabCards");
 });
 
-tabDeck.addEventListener("click", () => {
-  console.log("デッキクリック");
-
-  showPage("deck");
+document.getElementById("tabDeck")?.addEventListener("click", () => {
+  showPage("deckPage", "tabDeck");
 });
 
-tabCollection.addEventListener("click", () => {
-  console.log("コレクションクリック");
-
-  showPage("collection");
+document.getElementById("tabCollection")?.addEventListener("click", () => {
+  showPage("collectionPage", "tabCollection");
 });
 
-tabSettings.addEventListener("click", () => {
-  console.log("設定クリック");
-
-  showPage("settings");
+document.getElementById("tabUnopened")?.addEventListener("click", () => {
+  showPage("unopenedPage", "tabUnopened");
 });
 
-tabUnopened.addEventListener("click", () => {
-  console.log("未開封クリック");
-  showPage("unopened");
+document.getElementById("tabMasterPupil")?.addEventListener("click", () => {
+  showPage("masterPupilPage", "tabMasterPupil");
 });
 
-tabMasterPupil.addEventListener("click", () => {
-  console.log("師弟レベルクリック");
-  showPage("masterPupil");
+document.getElementById("tabSettings")?.addEventListener("click", () => {
+  showPage("settingsPage", "tabSettings");
 });
 
-const lastPage = sessionStorage.getItem("lastPage");
+// ==============================
+// 初期表示
+// ==============================
 
-if (lastPage) {
-  sessionStorage.removeItem("lastPage"); // ← 先に削除
-  showPage(lastPage);
-} else {
-  showPage("cards");
-}
+document.addEventListener("DOMContentLoaded", () => {
+  showPage("cardsPage", "tabCards");
+});

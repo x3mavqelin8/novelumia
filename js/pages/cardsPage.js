@@ -1,3 +1,4 @@
+let cards = [];
 let latestSeries = "";
 let previousSeries = "";
 
@@ -457,6 +458,10 @@ function renderCards(targetId = "cards", mode = "detail", deckSeries = "") {
 
   const searchUnit = document.getElementById("searchUnit")?.checked ?? false;
 
+  const selectedCharacterName = window.getSelectedCharacterName?.() ?? "";
+
+  const selectedForm = window.getSelectedForm?.() ?? "";
+
   if (
     mode !== "select" &&
     !seriesFilter &&
@@ -642,9 +647,29 @@ function renderCards(targetId = "cards", mode = "detail", deckSeries = "") {
 
         saveCardData();
 
-        renderCards();
-        //filterCards();
-        //
+        // このカードだけ画面を更新
+        ownedBtn.textContent = card.owned ? "●" : "○";
+
+        if (mode === "detail") {
+          img.classList.toggle("gray", card.owned);
+        }
+
+        // 枚数表示を更新
+        let countTag = cardDiv.querySelector(".count-tag");
+
+        if (card.count > 1) {
+          if (!countTag) {
+            countTag = document.createElement("span");
+            countTag.className = "count-tag";
+            cardDiv.querySelector(".card-left").appendChild(countTag);
+          }
+
+          countTag.textContent = `×${card.count}`;
+        } else if (countTag) {
+          countTag.remove();
+        }
+
+        // コレクションの数字だけ更新
         renderCollection();
 
         if (isDeckEditing) {
@@ -796,3 +821,7 @@ async function createPdf() {
 
   URL.revokeObjectURL(url);
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  loadCards();
+});

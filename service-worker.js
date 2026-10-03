@@ -1,14 +1,13 @@
-const CACHE_NAME = "dbsdv-build-49";
+const CACHE_NAME = "dbsdv-build-51";
 
 const STATIC_FILES = ["./", "./index.html", "./manifest.json"];
 
 // インストール
+
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => cache.addAll(STATIC_FILES)),
   );
-
-  self.skipWaiting();
 });
 
 // 有効化
@@ -91,6 +90,5 @@ self.addEventListener("fetch", (event) => {
 // アプリ側から「今すぐ新しいService Workerを有効化して」と言われたら実行
 self.addEventListener("message", (event) => {
   if (event.data?.type === "SKIP_WAITING") {
-    self.skipWaiting();
   }
 });
