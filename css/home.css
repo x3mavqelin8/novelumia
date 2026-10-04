@@ -1,0 +1,587 @@
+/* ==========================
+   DBSDV Collection - Home
+========================== */
+
+.app-header {
+  position: relative;
+  margin-bottom: 18px;
+  padding: 20px 24px 0;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.98), rgba(239,244,250,.96));
+  border: 1px solid #d6dee8;
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(25, 42, 61, .08);
+  overflow: hidden;
+}
+
+.app-header::before {
+  content: "";
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  right: -90px;
+  top: -150px;
+  background: linear-gradient(135deg, rgba(255,92,145,.22), rgba(68,168,255,.18));
+  transform: rotate(28deg);
+}
+
+.site-title-wrap {
+  position: relative;
+  z-index: 1;
+  padding-right: 60px;
+}
+
+.site-title-mark {
+  font-family: "DotGothic16", sans-serif;
+  font-size: clamp(34px, 7vw, 58px);
+  font-weight: 900;
+  line-height: .9;
+  letter-spacing: .04em;
+  color: #142a43;
+  text-shadow: 2px 2px 0 #fff, 4px 4px 0 rgba(50, 110, 170, .14);
+}
+
+.site-title {
+  margin: 4px 0 0;
+  font-family: "DotGothic16", sans-serif;
+  font-size: clamp(20px, 4vw, 30px);
+  letter-spacing: .16em;
+  color: #1b3550;
+}
+
+.site-subtitle {
+  margin: 5px 0 16px;
+  color: #74869a;
+  font-size: 11px;
+  letter-spacing: .18em;
+  font-weight: 700;
+}
+
+.home-button {
+  position: fixed;
+  top: 18px;
+  right: 20px;
+  z-index: 9999;
+  width: 48px;
+  height: 48px;
+  border: 1px solid #cfd9e4;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(20,42,67,.1);
+  font-size: 19px;
+}
+
+.top-tabs {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+  margin: 0 -24px;
+  padding: 0 12px;
+  border-top: 1px solid #dce4ec;
+  background: rgba(255,255,255,.86);
+}
+
+.top-tab {
+  min-height: 58px;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  background: transparent;
+  color: #53677c;
+  font-weight: 800;
+  font-size: 14px;
+  cursor: pointer;
+  transition: .18s ease;
+}
+
+.top-tab-icon {
+  display: block;
+  margin-bottom: 1px;
+  font-size: 19px;
+  line-height: 1;
+}
+
+.top-tab.active {
+  color: #e63f75;
+  border-bottom-color: #ef4f87;
+  background: linear-gradient(180deg, rgba(255,255,255,0), rgba(255,80,135,.08));
+}
+
+.home-series-panel {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 22px;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 22px 24px;
+  border: 1px solid #cbd7e4;
+  border-radius: 16px;
+  background:
+    linear-gradient(120deg, #142a43 0%, #203f61 58%, #314f72 100%);
+  color: #fff;
+  box-shadow: 0 10px 24px rgba(20,42,67,.14);
+  position: relative;
+  overflow: hidden;
+}
+
+.home-series-panel::after {
+  content: "";
+  position: absolute;
+  right: -30px;
+  top: -70px;
+  width: 260px;
+  height: 220px;
+  border: 2px solid rgba(255,255,255,.1);
+  transform: rotate(28deg);
+}
+
+.home-series-copy,
+.home-series-progress {
+  position: relative;
+  z-index: 1;
+}
+
+.home-series-kicker,
+.home-card-list-kicker {
+  display: block;
+  font-size: 10px;
+  letter-spacing: .2em;
+  font-weight: 900;
+  color: #79cfff;
+}
+
+.home-series-copy h2 {
+  margin: 3px 0 0;
+  font-family: "DotGothic16", sans-serif;
+  font-size: clamp(38px, 9vw, 68px);
+  line-height: .95;
+  letter-spacing: .04em;
+  color: #fff;
+}
+
+.home-series-copy p {
+  margin: 7px 0 0;
+  color: #c7d6e6;
+  font-size: 13px;
+}
+
+.home-progress-label,
+.home-progress-count {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.home-progress-label {
+  color: #c7d6e6;
+  font-size: 12px;
+}
+
+.home-progress-label strong {
+  font-size: 28px;
+  color: #ff71a5;
+  font-family: "DotGothic16", sans-serif;
+}
+
+.home-progress-bar {
+  height: 9px;
+  margin: 9px 0 10px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: rgba(255,255,255,.15);
+}
+
+.home-progress-bar span {
+  display: block;
+  height: 100%;
+  width: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #ff4f91, #ff8fc0);
+  transition: width .25s ease;
+}
+
+.home-progress-count {
+  color: #c7d6e6;
+  font-size: 11px;
+}
+
+.home-progress-count strong {
+  color: #fff;
+  font-size: 15px;
+}
+
+.home-filters {
+  margin-bottom: 16px;
+  padding: 14px;
+  border: 1px solid #d6dee8;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 5px 16px rgba(25,42,61,.06);
+}
+
+.home-search-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 46px;
+  padding: 0 13px;
+  border: 1px solid #cbd7e4;
+  border-radius: 11px;
+  background: #f7f9fb;
+}
+
+.home-search-icon {
+  color: #7a8da0;
+  font-size: 26px;
+  line-height: 1;
+  transform: rotate(-15deg);
+}
+
+.home-search-row input {
+  width: 100%;
+  border: 0 !important;
+  outline: 0;
+  background: transparent !important;
+  box-shadow: none !important;
+  font-size: 14px;
+}
+
+.home-filter-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 9px;
+  margin-top: 10px;
+}
+
+.home-select-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  padding: 0 12px;
+  border: 1px solid #cbd7e4;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.home-select-wrap > span {
+  color: #718397;
+  font-size: 11px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.home-select-wrap select {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  font-weight: 800;
+  color: #243b55;
+  padding: 12px 4px;
+  outline: 0;
+}
+
+.home-filter-button {
+  padding: 0 15px;
+  border: 1px solid #cbd7e4;
+  border-radius: 10px;
+  background: #fff;
+  color: #334b64;
+  font-weight: 800;
+}
+
+.home-filters .advanced-filters {
+  margin-top: 10px;
+}
+
+.home-card-list-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 12px;
+  margin: 20px 2px 10px;
+}
+
+.home-card-list-heading h2 {
+  margin: 3px 0 0;
+  color: #1c344d;
+  font-size: 21px;
+}
+
+.home-card-list-heading #resultCount {
+  margin-bottom: 3px;
+  color: #7b8da0;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+#cards {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+}
+
+#cards .card {
+  padding: 7px;
+  border: 1px solid #d8e0e8;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(25,42,61,.08);
+}
+
+#cards .card-header {
+  margin-bottom: 5px;
+}
+
+#cards .card-name {
+  font-size: 13px;
+  margin-top: 7px;
+}
+
+.bottom-nav {
+  display: none !important;
+}
+
+@media (max-width: 900px) {
+  #cards { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+@media (max-width: 700px) {
+  body { padding: 7px 7px 24px; }
+
+  .app-header {
+    margin-bottom: 12px;
+    padding: 15px 12px 0;
+    border-radius: 14px;
+  }
+
+  .site-title-wrap { padding-right: 45px; }
+  .site-title-mark { font-size: 35px; }
+  .site-title { font-size: 19px; }
+  .site-subtitle { font-size: 8px; margin-bottom: 12px; }
+  .home-button { top: 12px; right: 12px; width: 42px; height: 42px; font-size: 12px; }
+
+  .top-tabs { margin: 0 -12px; padding: 0 5px; }
+  .top-tab { min-height: 52px; font-size: 12px; }
+  .top-tab-icon { font-size: 17px; }
+
+  .home-series-panel {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 16px;
+    border-radius: 13px;
+  }
+
+  .home-series-copy h2 { font-size: 44px; }
+  .home-progress-label strong { font-size: 24px; }
+
+  .home-filters { padding: 10px; border-radius: 12px; }
+  .home-search-row { height: 42px; }
+  .home-filter-row { grid-template-columns: 1fr auto; }
+  .home-filter-button { padding: 0 11px; }
+
+  .home-card-list-heading { margin-top: 16px; justify-content: flex-end; }
+
+  #cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  #cards .card { padding: 5px; border-radius: 8px; }
+  #cards .card-name { font-size: 11px; }
+}
+
+/* ==========================
+   追加調整
+========================== */
+
+/* TOPボタンはページをスクロールしても常に右上に表示 */
+.app-header .home-button {
+  position: fixed;
+  top: 18px;
+  right: 20px;
+  z-index: 9999;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 1px solid #cfd9e4;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(20,42,67,.12);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  color: #1b3550;
+}
+
+/* 検索欄の直下に「カード名」「ユニット相手」 */
+.home-search-options {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin: 8px 0 12px;
+  padding-left: 4px;
+}
+
+.home-search-options label {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0;
+  font-size: 13px;
+}
+
+/* 弾検索は折り畳みの中 */
+.advanced-filters .home-select-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.advanced-filters .home-select-wrap select {
+  flex: 1;
+}
+
+/* 記録の4ボタン */
+.record-menu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.record-menu-button {
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 18px;
+  border: 1px solid #d6dee8;
+  border-radius: 16px;
+  background: linear-gradient(145deg, #fff, #f5f8fb);
+  box-shadow: 0 6px 16px rgba(25,42,61,.08);
+  color: #1b3550;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.record-menu-button:hover {
+  transform: translateY(-1px);
+}
+
+.record-menu-icon {
+  font-size: 30px;
+  line-height: 1;
+}
+
+.subpage-header {
+  margin-bottom: 16px;
+}
+
+.record-back-button {
+  margin-bottom: 8px;
+  padding: 7px 12px;
+  border: 1px solid #d6dee8;
+  border-radius: 10px;
+  background: #fff;
+  color: #53677d;
+  cursor: pointer;
+}
+
+/* デッキ画面だけ幅が広がらないよう、ホームと同じ幅に固定 */
+#deckPage,
+#recordPage,
+#collectionPage,
+#unopenedPage,
+#masterPupilPage,
+#avatarPage,
+#settingsPage {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+#deckPage .deck-card-select,
+#deckPage #editorCardList {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 700px) {
+  .record-menu-grid {
+    gap: 10px;
+  }
+
+  .record-menu-button {
+    min-height: 100px;
+    padding: 14px 8px;
+    font-size: 13px;
+  }
+
+  .record-menu-icon {
+    font-size: 26px;
+  }
+
+  .home-search-options {
+    gap: 14px;
+    font-size: 12px;
+  }
+}
+
+/* ==========================
+   画面切り替え時の横幅ズレ防止
+   縦スクロールバーの有無でヘッダー幅が変わらないようにする
+========================== */
+html {
+  overflow-y: scroll;
+}
+
+
+/* ==========================
+   デッキ未作成時
+========================== */
+.deck-empty-state {
+  margin: 20px 0 0;
+  padding: 36px 20px;
+  text-align: center;
+  border: 1px dashed #cfd8e3;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.deck-empty-icon {
+  font-size: 42px;
+  line-height: 1;
+  margin-bottom: 14px;
+}
+
+.deck-empty-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #333;
+}
+
+.deck-empty-text {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #777;
+}
+
+@media (max-width: 700px) {
+  .deck-empty-state {
+    padding: 30px 16px;
+  }
+
+  .deck-empty-title {
+    font-size: 16px;
+  }
+
+  .deck-empty-text {
+    font-size: 13px;
+  }
+}

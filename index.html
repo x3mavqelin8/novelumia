@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="css/unopened.css">
     <link rel="stylesheet" href="css/master-pupil.css" />
     <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/home.css">
   </head>
 
   <body>
@@ -40,137 +41,155 @@
       <input type="file" id="restoreFile" accept=".json" hidden />
     </div>
 
-<header>
+<header class="app-header">
   <div class="site-title-wrap">
-  <h1 class="site-title">DBSDV Collection</h1>
-  <p class="site-subtitle">− 集めて、見つけて、楽しむ −</p>
-</div>
+    <div class="site-title-mark">DBSDV</div>
+    <h1 class="site-title">Collection</h1>
+    <p class="site-subtitle">DRAGON BALL SUPER DIVERS</p>
+  </div>
 
-  <button class="home-button" onclick="location.reload()" title="ホーム">
-    🏠
+  <button class="home-button" onclick="location.reload()" title="TOP">
+    TOP
   </button>
+
+  <nav class="top-tabs" aria-label="メインメニュー">
+    <button class="top-tab active" data-page="cardsPage" data-tab="tabCards">
+      <span class="top-tab-icon">▣</span>
+      <span>カード</span>
+    </button>
+    <button class="top-tab" data-page="deckPage" data-tab="tabDeck">
+      <span class="top-tab-icon">◆</span>
+      <span>デッキ</span>
+    </button>
+    <button class="top-tab" data-page="recordPage" data-tab="tabCollection">
+      <span class="top-tab-icon">▥</span>
+      <span>記録</span>
+    </button>
+    <button class="top-tab" data-page="settingsPage" data-tab="tabSettings">
+      <span class="top-tab-icon">⚙</span>
+      <span>設定</span>
+    </button>
+  </nav>
 </header>
 
     <main>
       <section id="cardsPage">
-  <section class="filters">
 
-  <!-- 検索 -->
-  <div class="filter-row">
-    <div class="search-group">
-      <input
-        type="text"
-        id="search"
-        placeholder="カード名・カード番号で検索"
-      />
+        <section class="home-series-panel">
+          <div class="home-series-copy">
+            <span class="home-series-kicker">LATEST SERIES</span>
+            <h2 id="homeSeriesName">12弾</h2>
+            <p>今弾コレクション</p>
+          </div>
 
-      <div class="search-options">
-        <label>
-          <input type="checkbox" id="searchName" />
-          カード名
-        </label>
+          <div class="home-series-progress">
+            <div class="home-progress-label">
+              <span>コンプリート率</span>
+              <strong id="homeCompletionRate">0%</strong>
+            </div>
+            <div class="home-progress-bar">
+              <span id="homeCompletionBar"></span>
+            </div>
+            <div class="home-progress-count">
+              <span>所持 <strong id="homeOwnedCount">0</strong> 枚</span>
+              <span>全 <strong id="homeTotalCount">0</strong> 枚</span>
+            </div>
+          </div>
+        </section>
 
-        <label>
-          <input type="checkbox" id="searchUnit" />
-          ユニット相手
-        </label>
-      </div>
-    </div>
-  </div>
+        <section class="home-filters">
+          <div class="home-search-row">
+            <span class="home-search-icon">⌕</span>
+            <input
+              type="text"
+              id="search"
+              placeholder="カード名・カード番号で検索"
+            />
+          </div>
 
+          <div class="search-options home-search-options">
+            <label>
+              <input type="checkbox" id="searchName" />
+              カード名
+            </label>
+            <label>
+              <input type="checkbox" id="searchUnit" />
+              ユニット相手
+            </label>
+          </div>
 
-  <!-- 詳細絞り込み -->
-  <details class="advanced-filters" open>
-    <summary>絞り込み条件</summary>
+          <div class="home-filter-row">
+            <button id="homeAdvancedButton" class="home-filter-button" type="button">
+              ⚙ 絞り込み
+            </button>
+          </div>
 
-    <div class="filter-row">
-      <div class="select-group">
+          <details class="advanced-filters">
+            <summary>詳細な絞り込み</summary>
 
-        <select id="seriesFilter">
-          <option value="">すべての弾</option>
-        </select>
+            <div class="filter-row">
+              <div class="select-group">
+                <label class="home-select-wrap">
+                  <span>弾</span>
+                  <select id="seriesFilter">
+                    <option value="">すべての弾</option>
+                  </select>
+                </label>
 
-        <select id="promoFilter" hidden>
-          <option value="">入手方法（すべて）</option>
-        </select>
+                <select id="promoFilter" hidden>
+                  <option value="">入手方法（すべて）</option>
+                </select>
 
-        <select id="rarityFilter">
-          <option value="">すべてのレアリティ</option>
-        </select>
+                <select id="rarityFilter">
+                  <option value="">すべてのレアリティ</option>
+                </select>
 
-        <select id="typeFilter">
-          <option value="">すべてのタイプ</option>
-          <option value="B">ブースト</option>
-          <option value="L">リミテッド</option>
-          <option value="I">インパクト</option>
-          <option value="R">ラッシュ</option>
-        </select>
+                <select id="typeFilter">
+                  <option value="">すべてのタイプ</option>
+                  <option value="B">ブースト</option>
+                  <option value="L">リミテッド</option>
+                  <option value="I">インパクト</option>
+                  <option value="R">ラッシュ</option>
+                </select>
 
-        <select id="actionSkillFilter">
-          <option value="">すべてのアクションスキル</option>
-        </select>
+                <select id="actionSkillFilter">
+                  <option value="">すべてのアクションスキル</option>
+                </select>
 
-        <select id="energyFilter">
-          <option value="">すべての気力</option>
-          <option value="1">気力 1.0〜</option>
-          <option value="2">気力 2.0〜</option>
-          <option value="3">気力 3.0〜</option>
-        </select>
+                <select id="energyFilter">
+                  <option value="">すべての気力</option>
+                  <option value="1">気力 1.0〜</option>
+                  <option value="2">気力 2.0〜</option>
+                  <option value="3">気力 3.0〜</option>
+                </select>
 
-        <div id="formSearchArea" hidden>
-          <select id="formSearchSelect">
-            <option value="">形態を選択</option>
-          </select>
+                <div id="formSearchArea" hidden>
+                  <select id="formSearchSelect">
+                    <option value="">形態を選択</option>
+                  </select>
+                </div>
+
+                <button id="resetFilter">リセット</button>
+              </div>
+            </div>
+
+            <div class="filter-row option-row">
+              <label><input type="checkbox" id="parallelOnly" /> パラレル</label>
+              <label><input type="checkbox" id="duplicateOnly" /> 2枚以上のカード</label>
+              <label><input type="checkbox" id="ownedOnly" /> 所持カード</label>
+              <label><input type="checkbox" id="wantedOnly" /> 探しているカード</label>
+            </div>
+
+            <div class="print-row">
+              <button id="pdfCardsButton">📄 PDF</button>
+            </div>
+          </details>
+        </section>
+
+        <div class="home-card-list-heading">
+          <span id="resultCount"></span>
         </div>
 
-        <button id="resetFilter">リセット</button>
-
-      </div>
-    </div>
-
-
-    <div class="filter-row option-row">
-
-      <label>
-        <input type="checkbox" id="parallelOnly" />
-        パラレル
-      </label>
-
-      <label>
-        <input type="checkbox" id="duplicateOnly" />
-        2枚以上のカード
-      </label>
-
-      <label>
-        <input type="checkbox" id="ownedOnly" />
-        所持カード
-      </label>
-
-      <label>
-        <input type="checkbox" id="wantedOnly" />
-        探しているカード
-      </label>
-
-    </div>
-
-
-    <div class="print-row">
-      <button id="pdfCardsButton">
-        📄 PDF
-      </button>
-    </div>
-
-  </details>
-
-
-  <!-- 件数 -->
-  <div class="result-row">
-    <span id="resultCount"></span>
-  </div>
-
-    </section>
-
-        <!-- カード一覧 -->
     <div id="cards"></div>
 
     </section>
@@ -207,7 +226,6 @@
   <div>🛡️ Guard：<span id="deckGuard">0</span></div>
   <div>⚡ 戦闘力：<span id="deckBattlePower">0</span></div>
 </div>
-          </div>
 
           <div class="deck-buttons">
             <button id="saveDeckBtn">💾 デッキを保存</button>
@@ -236,6 +254,7 @@
                 <div class="select-group">
                   <select id="deckSeriesFilter">
                     <option value="">すべて</option>
+                    <option value="12弾">12弾</option>
                     <option value="11弾">11弾</option>
                     <option value="10弾">10弾</option>
                     <option value="9弾">9弾</option>
@@ -309,39 +328,85 @@
         </div>
       </section>
 
+      <section id="recordPage" hidden>
+        <h2>📝 記録</h2>
+
+        <div class="record-menu-grid">
+          <button class="record-menu-button" data-record-target="collectionPage">
+            <span class="record-menu-icon">📊</span>
+            <span>コレクション</span>
+          </button>
+          <button class="record-menu-button" data-record-target="unopenedPage">
+            <span class="record-menu-icon">📦</span>
+            <span>未開封パック</span>
+          </button>
+          <button class="record-menu-button" data-record-target="masterPupilPage">
+            <span class="record-menu-icon">🎓</span>
+            <span>師弟レベル</span>
+          </button>
+          <button class="record-menu-button" data-record-target="avatarPage">
+            <span class="record-menu-icon">👤</span>
+            <span>アバター設定</span>
+          </button>
+        </div>
+      </section>
+
       <section id="collectionPage" hidden>
-        <h2>📊 コレクション</h2>
-
+        <div class="subpage-header">
+          <button class="record-back-button" data-record-back>← 記録へ戻る</button>
+          <h2>📊 コレクション</h2>
+        </div>
         <div id="collectionCards"></div>
-
         <div id="collectionDetail"></div>
       </section>
 
       <section id="unopenedPage" hidden>
-        <h2>📦 未開封パック</h2>
-
+        <div class="subpage-header">
+          <button class="record-back-button" data-record-back>← 記録へ戻る</button>
+          <h2>📦 未開封パック</h2>
+        </div>
         <div class="unopened-add">
           <input type="text" id="newPackName" placeholder="パック名を入力" />
-
           <button id="addPackButton">追加</button>
         </div>
-
         <div id="unopenedPackList"></div>
       </section>
 
       <section id="masterPupilPage" hidden>
-  <h2>🎓 師弟レベル</h2>
+        <div class="subpage-header">
+          <button class="record-back-button" data-record-back>← 記録へ戻る</button>
+          <h2>🎓 師弟レベル</h2>
+        </div>
+        <div class="master-pupil-search">
+          <input type="text" id="masterPupilSearch" placeholder="キャラクター名で検索" />
+        </div>
+        <div id="masterPupilList"></div>
+      </section>
 
-          <div class="master-pupil-search">
-  <input
-    type="text"
-    id="masterPupilSearch"
-    placeholder="キャラクター名で検索"
-  />
-</div>
-
-  <div id="masterPupilList"></div>
-</section>
+      <section id="avatarPage" hidden>
+        <div class="subpage-header">
+          <button class="record-back-button" data-record-back>← 記録へ戻る</button>
+          <h2>👤 アバター設定</h2>
+        </div>
+        <div class="setting-card">
+          <div class="setting-info">
+            <strong>❤️ HP</strong>
+            <input id="avatarHp" type="number" min="0" value="0" />
+          </div>
+          <div class="setting-info">
+            <strong>⚔️ Power</strong>
+            <input id="avatarPower" type="number" min="0" value="0" />
+          </div>
+          <div class="setting-info">
+            <strong>🛡️ Guard</strong>
+            <input id="avatarGuard" type="number" min="0" value="0" />
+          </div>
+          <div class="setting-info">
+            <strong>⚡ 初期気力</strong>
+            <input id="avatarInitialKi" type="number" min="0" value="0" />
+          </div>
+        </div>
+      </section>
 
 
       <section id="settingsPage" hidden>
@@ -386,30 +451,6 @@
    <button id="clearMistakeList" class="btn btn-danger">
     🗑️ 要修正を全解除
   </button>
-</div>
-
-        <div class="setting-card">
-  <h3>👤 アバター設定</h3>
-
-  <div class="setting-info">
-    <strong>❤️ HP</strong>
-    <input id="avatarHp" type="number" min="0" value="0" />
-  </div>
-
-  <div class="setting-info">
-    <strong>⚔️ Power</strong>
-    <input id="avatarPower" type="number" min="0" value="0" />
-  </div>
-
-  <div class="setting-info">
-    <strong>🛡️ Guard</strong>
-    <input id="avatarGuard" type="number" min="0" value="0" />
-  </div>
-
-  <div class="setting-info">
-    <strong>⚡ 初期気力</strong>
-    <input id="avatarInitialKi" type="number" min="0" value="0" />
-  </div>
 </div>
 
         <div class="setting-card">
@@ -654,37 +695,25 @@
   <p id="modalAcquisition"></p>
 </div>
 
-<!-- JS互換用（画面には表示しない） -->
-<textarea id="modalMemo" hidden></textarea>
+<div class="modal-section">
+  <h3>📝 メモ</h3>
+
+  <textarea
+    id="modalMemo"
+    rows="4"
+    placeholder="自由にメモできます"
+  ></textarea>
+</div>
 
 </div>
 </div>
 
     <nav class="bottom-nav">
-  <button id="tabCards" class="active" title="図鑑">
-    📖
-  </button>
-
-  <button id="tabDeck" title="デッキ">
-    🃏
-  </button>
-
-  <button id="tabCollection" title="コレクション">
-    📊
-  </button>
-
-  <button id="tabUnopened" title="未開封">
-    📦
-  </button>
-
-  <button id="tabMasterPupil" title="師弟レベル">
-    🎓
-  </button>
-
-  <button id="tabSettings" title="設定">
-    ⚙️
-  </button>
-</nav>
+      <button id="tabCards" class="active" title="カード">📖</button>
+      <button id="tabDeck" title="デッキ">🃏</button>
+      <button id="tabCollection" title="記録">📝</button>
+      <button id="tabSettings" title="設定">⚙️</button>
+    </nav>
 
     <div id="excelImportModal" class="modal" hidden>
   <div class="modal-content">
@@ -1016,6 +1045,32 @@ document.addEventListener("DOMContentLoaded", () => {
     if (window.innerWidth <= 700) {
       advancedFilters.removeAttribute("open");
     }
+  });
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const advancedButton = document.getElementById("homeAdvancedButton");
+    const advancedFilters = document.querySelector(".advanced-filters");
+
+    if (advancedButton && advancedFilters) {
+      advancedButton.addEventListener("click", () => {
+        advancedFilters.open = !advancedFilters.open;
+      });
+    }
+
+    document.querySelectorAll(".record-menu-button").forEach((button) => {
+      button.addEventListener("click", () => {
+        const pageId = button.dataset.recordTarget;
+        if (typeof showPage === "function") showPage(pageId, "tabCollection");
+      });
+    });
+
+    document.querySelectorAll("[data-record-back]").forEach((button) => {
+      button.addEventListener("click", () => {
+        if (typeof showPage === "function") showPage("recordPage", "tabCollection");
+      });
+    });
   });
 </script>
 
