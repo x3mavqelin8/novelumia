@@ -48,8 +48,8 @@
     <p class="site-subtitle">DRAGON BALL SUPER DIVERS</p>
   </div>
 
-  <button class="home-button" onclick="location.reload()" title="TOP">
-    TOP
+  <button class="home-button" onclick="location.reload()" title="ホーム">
+    🏠
   </button>
 
   <nav class="top-tabs" aria-label="メインメニュー">
@@ -79,13 +79,15 @@
           <div class="home-series-copy">
             <span class="home-series-kicker">LATEST SERIES</span>
             <h2 id="homeSeriesName">12弾</h2>
-            <p>今弾コレクション</p>
           </div>
 
           <div class="home-series-progress">
             <div class="home-progress-label">
               <span>コンプリート率</span>
-              <strong id="homeCompletionRate">0%</strong>
+              <div class="home-progress-label-right">
+                <strong id="homeCompletionRate">0%</strong>
+                <button id="homeSeriesDetailButton" class="home-series-detail-button" type="button">▶ 詳細</button>
+              </div>
             </div>
             <div class="home-progress-bar">
               <span id="homeCompletionBar"></span>
@@ -95,6 +97,28 @@
               <span>全 <strong id="homeTotalCount">0</strong> 枚</span>
             </div>
           </div>
+        </section>
+
+        <section id="homeSeriesDetail" class="home-series-detail" hidden>
+          <div class="home-series-detail-header">
+            <div>
+              <span class="home-series-detail-kicker">COLLECTION DETAIL</span>
+              <h3 id="homeSeriesDetailName">12弾</h3>
+            </div>
+            <button id="homeSeriesDetailClose" class="home-series-detail-close" type="button">×</button>
+          </div>
+          <div class="home-series-detail-summary">
+            <div>
+              <strong id="homeSeriesDetailPercent">0%</strong>
+              <span>コンプリート</span>
+            </div>
+            <div>
+              <strong id="homeSeriesDetailOwned">0</strong>
+              <span>/ <b id="homeSeriesDetailTotal">0</b>枚</span>
+            </div>
+          </div>
+          <div class="home-series-detail-bar"><span id="homeSeriesDetailBar"></span></div>
+          <div id="homeSeriesRarityList" class="home-series-rarity-list"></div>
         </section>
 
         <section class="home-filters">
@@ -125,8 +149,7 @@
           </div>
 
           <details class="advanced-filters">
-            <summary>詳細な絞り込み</summary>
-
+            <summary aria-hidden="true"></summary>
             <div class="filter-row">
               <div class="select-group">
                 <label class="home-select-wrap">
@@ -415,7 +438,7 @@
         <div class="setting-card update-card">
           <h3>💾 データ管理</h3>
 
-          <button id="backupButton" class="btn btn-primary">
+          <button id="backupButton" class="btn btn-primary" style="background:#2196f3;">
             💾 バックアップ
           </button>
 
@@ -453,53 +476,18 @@
   </button>
 </div>
 
-        <div class="setting-card">
-          <h3>🃏 カードデータ情報</h3>
-
-          <div class="setting-info">
-            <strong>カードデータバージョン</strong>
-            <span id="appVersion">0.1.0</span>
-          </div>
-
-          <div class="setting-info">
-            <strong>データ更新日</strong>
-            <span id="lastUpdatedInfo">-</span>
-          </div>
-
-          <div class="setting-info">
-            <strong>追加カード</strong>
-            <span id="lastAddedCardsInfo">-</span>
-          </div>
-
-          <div class="setting-info">
-            <strong>カード総枚数</strong>
-            <span id="cardCountInfo">-</span>
-          </div>
+        <div class="settings-update-area">
+          <span id="latestVersion" hidden></span>
+          <span id="currentVersion" hidden></span>
+          <div id="updateStatus" class="update-status"></div>
+          <button
+            id="updateButton"
+            class="btn btn-primary"
+            style="display: none;"
+          >
+            🔄 アプリを更新
+          </button>
         </div>
-
-        <div class="setting-card update-card">
-  <h3>📱 アプリ情報</h3>
-
-<div class="setting-info">
-  <strong>現在のバージョン</strong>
-  <span id="currentVersion"></span>
-</div>
-
-<div class="setting-info">
-  <strong>最新のバージョン</strong>
-  <span id="latestVersion"></span>
-</div>
-
-<div id="updateStatus" class="update-status"></div>
-
-<button
-  id="updateButton"
-  class="btn btn-primary"
-  style="display: none;"
->
-  🏠 アップデート
-</button>
-</div>
 
       </section>
     </main>

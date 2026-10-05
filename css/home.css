@@ -297,6 +297,10 @@
   margin-top: 10px;
 }
 
+.home-filters .advanced-filters > summary {
+  display: none;
+}
+
 .home-card-list-heading {
   display: flex;
   justify-content: space-between;
@@ -583,5 +587,204 @@ html {
 
   .deck-empty-text {
     font-size: 13px;
+  }
+}
+
+
+/* 詳細絞り込み：弾と同じデザインで統一 */
+.home-filters .advanced-filters .select-group {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.home-filters .advanced-filters .select-group > select:not([hidden]),
+.home-filters .advanced-filters .home-select-wrap {
+  min-height: 56px;
+  box-sizing: border-box;
+  border: 1px solid #cbd7e4;
+  border-radius: 10px;
+  background: #fff;
+  color: #243b55;
+  font-weight: 800;
+}
+
+.home-filters .advanced-filters .select-group > select:not([hidden]) {
+  width: 100%;
+  min-width: 0;
+  padding: 0 14px;
+  outline: 0;
+  appearance: auto;
+}
+
+.home-filters .advanced-filters .select-group > select:not([hidden]):focus,
+.home-filters .advanced-filters .home-select-wrap:focus-within {
+  border-color: #9db7d2;
+  box-shadow: 0 0 0 2px rgba(157,183,210,.18);
+}
+
+.home-filters .advanced-filters .home-select-wrap {
+  width: auto;
+  padding: 0 12px;
+}
+
+.home-filters .advanced-filters .home-select-wrap select {
+  min-height: 54px;
+}
+
+@media (max-width: 700px) {
+  .home-filters .advanced-filters .select-group {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .home-filters .advanced-filters .select-group > select:not([hidden]),
+  .home-filters .advanced-filters .home-select-wrap {
+    min-height: 56px;
+  }
+}
+
+
+/* ==========================
+   トップ：選択中の弾の詳細
+========================== */
+.home-progress-label-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.home-series-detail-button {
+  padding: 4px 9px;
+  border: 1px solid rgba(255,255,255,.45);
+  border-radius: 999px;
+  background: rgba(255,255,255,.12);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.home-series-detail-button:active {
+  transform: scale(.97);
+}
+
+.home-series-detail {
+  margin: -4px 0 16px;
+  padding: 20px;
+  border: 1px solid #d6dee8;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 8px 22px rgba(25,42,61,.09);
+}
+
+.home-series-detail-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.home-series-detail-kicker {
+  color: #7890a8;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .16em;
+}
+
+.home-series-detail-header h3 {
+  margin: 3px 0 0;
+  color: #243b55;
+  font-size: 28px;
+}
+
+.home-series-detail-close {
+  width: 34px;
+  height: 34px;
+  border: 1px solid #d6dee8;
+  border-radius: 50%;
+  background: #fff;
+  color: #53677c;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.home-series-detail-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.home-series-detail-summary > div {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+}
+
+.home-series-detail-summary strong {
+  color: #243b55;
+  font-size: 28px;
+}
+
+.home-series-detail-summary span {
+  color: #73869a;
+  font-size: 13px;
+}
+
+.home-series-detail-bar {
+  height: 12px;
+  margin: 10px 0 16px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e8ebee;
+}
+
+.home-series-detail-bar span {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: #c9a63a;
+  transition: width .2s ease;
+}
+
+.home-series-rarity-list {
+  display: grid;
+  gap: 6px;
+}
+
+.home-series-rarity-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #f4f4f4;
+  color: #222;
+  font-size: 14px;
+}
+
+.home-series-rarity-row strong {
+  font-weight: 500;
+}
+
+@media (max-width: 700px) {
+  .home-progress-label-right {
+    gap: 7px;
+  }
+
+  .home-series-detail {
+    padding: 16px;
+  }
+
+  .home-series-detail-header h3 {
+    font-size: 24px;
+  }
+
+  .home-series-detail-summary strong {
+    font-size: 24px;
   }
 }

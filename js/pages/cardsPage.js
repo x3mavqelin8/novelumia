@@ -8,6 +8,67 @@ const typeNames = {
   I: "インパクト",
   R: "ラッシュ",
 };
+function updateHomeSeriesSummary(series = latestSeries || "12弾") {
+  const seriesCards = cards.filter((card) => card.series === series);
+  const total = seriesCards.length;
+  const owned = seriesCards.filter(
+    (card) => card.owned || Number(card.count) > 0,
+  ).length;
+  const percent = total > 0 ? Math.round((owned / total) * 100) : 0;
+
+  const nameElement = document.getElementById("homeSeriesName");
+  const rateElement = document.getElementById("homeCompletionRate");
+  const barElement = document.getElementById("homeCompletionBar");
+  const ownedElement = document.getElementById("homeOwnedCount");
+  const totalElement = document.getElementById("homeTotalCount");
+
+  if (nameElement) nameElement.textContent = series;
+  if (rateElement) rateElement.textContent = `${percent}%`;
+  if (barElement) barElement.style.width = `${percent}%`;
+  if (ownedElement) ownedElement.textContent = owned;
+  if (totalElement) totalElement.textContent = total;
+}
+
+function renderHomeSeriesDetail(series = latestSeries || "12弾") {
+  const detail = document.getElementById("homeSeriesDetail");
+  const seriesCards = cards.filter((card) => card.series === series);
+  const total = seriesCards.length;
+  const owned = seriesCards.filter((card) => card.owned || Number(card.count) > 0).length;
+  const percent = total > 0 ? Math.round((owned / total) * 100) : 0;
+
+  const nameElement = document.getElementById("homeSeriesDetailName");
+  const percentElement = document.getElementById("homeSeriesDetailPercent");
+  const ownedElement = document.getElementById("homeSeriesDetailOwned");
+  const totalElement = document.getElementById("homeSeriesDetailTotal");
+  const barElement = document.getElementById("homeSeriesDetailBar");
+  const listElement = document.getElementById("homeSeriesRarityList");
+
+  if (!detail || !listElement) return;
+
+  if (nameElement) nameElement.textContent = series;
+  if (percentElement) percentElement.textContent = `${percent}%`;
+  if (ownedElement) ownedElement.textContent = owned;
+  if (totalElement) totalElement.textContent = total;
+  if (barElement) barElement.style.width = `${percent}%`;
+
+  const rarityOrder = ["SEC", "PUR", "EXR", "GDR", "SR", "CP", "PR", "R", "N"];
+  listElement.innerHTML = "";
+
+  rarityOrder.forEach((rarity) => {
+    const rarityCards = seriesCards.filter((card) => card.rarity === rarity);
+    if (rarityCards.length === 0) return;
+
+    const rarityOwned = rarityCards.filter((card) => card.owned || Number(card.count) > 0).length;
+    const row = document.createElement("div");
+    row.className = "home-series-rarity-row";
+    row.innerHTML = `<span>${rarity}</span><strong>${rarityOwned} / ${rarityCards.length}枚</strong>`;
+    listElement.appendChild(row);
+  });
+
+  detail.hidden = false;
+  detail.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
 
 async function loadCards() {
   const filesResponse = await fetch("data/index.json");
@@ -157,6 +218,7 @@ async function loadCards() {
   document.getElementById("seriesFilter").value = latestSeries;
 
   renderCards();
+  updateHomeSeriesSummary(latestSeries);
 
   renderCollection();
 
@@ -164,6 +226,21 @@ async function loadCards() {
     latestSeries = seriesFilter.value;
 
     renderCards();
+    updateHomeSeriesSummary(latestSeries);
+
+    const detail = document.getElementById("homeSeriesDetail");
+    if (detail && !detail.hidden) {
+      renderHomeSeriesDetail(latestSeries);
+    }
+  });
+
+  document.getElementById("homeSeriesDetailButton")?.addEventListener("click", () => {
+    renderHomeSeriesDetail(latestSeries);
+  });
+
+  document.getElementById("homeSeriesDetailClose")?.addEventListener("click", () => {
+    const detail = document.getElementById("homeSeriesDetail");
+    if (detail) detail.hidden = true;
   });
 
   rarityFilter.addEventListener("change", () => {
@@ -646,30 +723,17 @@ function renderCards(targetId = "cards", mode = "detail", deckSeries = "") {
         }
 
         saveCardData();
+        updateHomeSeriesSummary(latestSeries);
 
-        // このカードだけ画面を更新
-        ownedBtn.textContent = card.owned ? "●" : "○";
+        renderCards();
+        updateHomeSeriesSummary(latestSeries);
 
-        if (mode === "detail") {
-          img.classList.toggle("gray", card.owned);
+        const detail = document.getElementById("homeSeriesDetail");
+        if (detail && !detail.hidden) {
+          renderHomeSeriesDetail(latestSeries);
         }
-
-        // 枚数表示を更新
-        let countTag = cardDiv.querySelector(".count-tag");
-
-        if (card.count > 1) {
-          if (!countTag) {
-            countTag = document.createElement("span");
-            countTag.className = "count-tag";
-            cardDiv.querySelector(".card-left").appendChild(countTag);
-          }
-
-          countTag.textContent = `×${card.count}`;
-        } else if (countTag) {
-          countTag.remove();
-        }
-
-        // コレクションの数字だけ更新
+        //filterCards();
+        //
         renderCollection();
 
         if (isDeckEditing) {
