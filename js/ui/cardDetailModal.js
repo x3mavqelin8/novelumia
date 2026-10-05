@@ -351,7 +351,7 @@ countPlus.addEventListener("click", () => {
 
   saveCardData();
 
-  renderCards();
+  updateCardListItem(currentCard);
   renderCollection();
 });
 
@@ -368,24 +368,7 @@ countMinus.addEventListener("click", () => {
 
   saveCardData();
 
-  renderCards();
-  renderCollection();
-});
-
-countMinus.addEventListener("click", () => {
-  if (!currentCard) return;
-
-  if (currentCard.owned <= 0) return;
-
-  currentCard.owned--;
-
-  currentCard.owned = currentCard.count > 0;
-
-  modalOwnedCount.textContent = currentCard.count;
-
-  saveCardData();
-
-  renderCards();
+  updateCardListItem(currentCard);
   renderCollection();
 });
 
