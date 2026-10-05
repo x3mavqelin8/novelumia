@@ -49,15 +49,26 @@ header {
   top: calc(env(safe-area-inset-top) + 16px);
   right: 16px;
 
-  border: none;
-  background: rgba(255, 255, 255, 0.9);
+  width: 52px;
+  height: 52px;
+
+  border: 1px solid #ddd;
+  border-radius: 8px;
+
+  background: #fff;
+  color: #333;
+
   cursor: pointer;
 
-  font-size: 28px;
+  font-size: 14px;
+  font-weight: bold;
   line-height: 1;
 
-  padding: 8px;
-  border-radius: 12px;
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 
@@ -70,4 +81,21 @@ header {
 
 .home-button:hover {
   background: rgba(0, 0, 0, 0.08);
+}
+
+/* ==========================
+   ヘッダー中央配置
+========================== */
+
+.app-header {
+  position: relative;
+}
+
+.site-title-wrap {
+  position: absolute;
+  left: 50vw;
+  transform: translateX(-50%);
+
+  width: max-content;
+  text-align: center;
 }

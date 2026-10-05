@@ -1,4 +1,4 @@
-const CACHE_NAME = "dbsdv-build-55";
+const CACHE_NAME = "dbsdv-build-56";
 
 const STATIC_FILES = ["./", "./index.html", "./manifest.json"];
 
@@ -67,28 +67,26 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // JS・CSS・画像はキャッシュ優先＋裏で更新
+  // JS・CSS・画像はネット優先
+  // ネットが使えない場合だけキャッシュを使用
   event.respondWith(
-    caches.match(event.request).then((cached) => {
-      const networkFetch = fetch(event.request)
-        .then((response) => {
-          const copy = response.clone();
+    fetch(event.request)
+      .then((response) => {
+        const copy = response.clone();
 
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, copy);
-          });
+        caches.open(CACHE_NAME).then((cache) => {
+          cache.put(event.request, copy);
+        });
 
-          return response;
-        })
-        .catch(() => cached);
-
-      return cached || networkFetch;
-    }),
+        return response;
+      })
+      .catch(() => caches.match(event.request)),
   );
 });
 
 // アプリ側から「今すぐ新しいService Workerを有効化して」と言われたら実行
 self.addEventListener("message", (event) => {
   if (event.data?.type === "SKIP_WAITING") {
+    self.skipWaiting();
   }
 });

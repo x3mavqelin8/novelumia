@@ -2,9 +2,9 @@
 <html lang="ja">
   <head>
     <link
-  href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap"
-  rel="stylesheet"
-/>
+      href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap"
+      rel="stylesheet"
+    />
 
     <meta charset="UTF-8" />
 
@@ -13,7 +13,7 @@
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
 
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="manifest.json" />
 
     <link rel="icon" type="image/webp" href="images/icon.webp" />
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
@@ -30,10 +30,10 @@
     <link rel="stylesheet" href="css/rarity.css" />
     <link rel="stylesheet" href="css/mobile.css" />
     <link rel="stylesheet" href="css/modal.css" />
-    <link rel="stylesheet" href="css/unopened.css">
+    <link rel="stylesheet" href="css/unopened.css" />
     <link rel="stylesheet" href="css/master-pupil.css" />
-    <link rel="stylesheet" href="css/theme.css">
-    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/home.css" />
   </head>
 
   <body>
@@ -41,40 +41,43 @@
       <input type="file" id="restoreFile" accept=".json" hidden />
     </div>
 
-<header class="app-header">
-  <div class="site-title-wrap">
-    <div class="site-title-mark">DBSDV</div>
-    <h1 class="site-title">Collection</h1>
-    <p class="site-subtitle">DRAGON BALL SUPER DIVERS</p>
-  </div>
+    <header class="app-header">
+      <div class="site-title-wrap">
+        <div class="site-title-mark">DBSDV</div>
+        <h1 class="site-title">Collection</h1>
+        <p class="site-subtitle">DRAGON BALL SUPER DIVERS</p>
+      </div>
 
-  <button class="home-button" onclick="location.reload()" title="ホーム">
-    🏠
-  </button>
+      <button class="home-button" onclick="location.reload()" title="ホーム">
+        TOP
+      </button>
 
-  <nav class="top-tabs" aria-label="メインメニュー">
-    <button class="top-tab active" data-page="cardsPage" data-tab="tabCards">
-      <span class="top-tab-icon">▣</span>
-      <span>カード</span>
-    </button>
-    <button class="top-tab" data-page="deckPage" data-tab="tabDeck">
-      <span class="top-tab-icon">◆</span>
-      <span>デッキ</span>
-    </button>
-    <button class="top-tab" data-page="recordPage" data-tab="tabCollection">
-      <span class="top-tab-icon">▥</span>
-      <span>記録</span>
-    </button>
-    <button class="top-tab" data-page="settingsPage" data-tab="tabSettings">
-      <span class="top-tab-icon">⚙</span>
-      <span>設定</span>
-    </button>
-  </nav>
-</header>
+      <nav class="top-tabs" aria-label="メインメニュー">
+        <button
+          class="top-tab active"
+          data-page="cardsPage"
+          data-tab="tabCards"
+        >
+          <span class="top-tab-icon">▣</span>
+          <span>カード</span>
+        </button>
+        <button class="top-tab" data-page="deckPage" data-tab="tabDeck">
+          <span class="top-tab-icon">◆</span>
+          <span>デッキ</span>
+        </button>
+        <button class="top-tab" data-page="recordPage" data-tab="tabCollection">
+          <span class="top-tab-icon">▥</span>
+          <span>記録</span>
+        </button>
+        <button class="top-tab" data-page="settingsPage" data-tab="tabSettings">
+          <span class="top-tab-icon">⚙</span>
+          <span>設定</span>
+        </button>
+      </nav>
+    </header>
 
     <main>
       <section id="cardsPage">
-
         <section class="home-series-panel">
           <div class="home-series-copy">
             <span class="home-series-kicker">LATEST SERIES</span>
@@ -86,7 +89,14 @@
               <span>コンプリート率</span>
               <div class="home-progress-label-right">
                 <strong id="homeCompletionRate">0%</strong>
-                <button id="homeSeriesDetailButton" class="home-series-detail-button" type="button" onclick="renderHomeSeriesDetail()">▶ 詳細</button>
+                <button
+                  id="homeSeriesDetailButton"
+                  class="home-series-detail-button"
+                  type="button"
+                  onclick="renderHomeSeriesDetail()"
+                >
+                  ▶ 詳細
+                </button>
               </div>
             </div>
             <div class="home-progress-bar">
@@ -105,7 +115,13 @@
               <span class="home-series-detail-kicker">COLLECTION DETAIL</span>
               <h3 id="homeSeriesDetailName">12弾</h3>
             </div>
-            <button id="homeSeriesDetailClose" class="home-series-detail-close" type="button">×</button>
+            <button
+              id="homeSeriesDetailClose"
+              class="home-series-detail-close"
+              type="button"
+            >
+              ×
+            </button>
           </div>
           <div class="home-series-detail-summary">
             <div>
@@ -117,7 +133,9 @@
               <span>/ <b id="homeSeriesDetailTotal">0</b>枚</span>
             </div>
           </div>
-          <div class="home-series-detail-bar"><span id="homeSeriesDetailBar"></span></div>
+          <div class="home-series-detail-bar">
+            <span id="homeSeriesDetailBar"></span>
+          </div>
           <div id="homeSeriesRarityList" class="home-series-rarity-list"></div>
         </section>
 
@@ -143,7 +161,11 @@
           </div>
 
           <div class="home-filter-row">
-            <button id="homeAdvancedButton" class="home-filter-button" type="button">
+            <button
+              id="homeAdvancedButton"
+              class="home-filter-button"
+              type="button"
+            >
               ⚙ 絞り込み
             </button>
           </div>
@@ -196,10 +218,18 @@
             </div>
 
             <div class="filter-row option-row">
-              <label><input type="checkbox" id="parallelOnly" /> パラレル</label>
-              <label><input type="checkbox" id="duplicateOnly" /> 2枚以上のカード</label>
+              <label
+                ><input type="checkbox" id="parallelOnly" /> パラレル</label
+              >
+              <label
+                ><input type="checkbox" id="duplicateOnly" />
+                2枚以上のカード</label
+              >
               <label><input type="checkbox" id="ownedOnly" /> 所持カード</label>
-              <label><input type="checkbox" id="wantedOnly" /> 探しているカード</label>
+              <label
+                ><input type="checkbox" id="wantedOnly" />
+                探しているカード</label
+              >
             </div>
 
             <div class="print-row">
@@ -212,12 +242,10 @@
           <span id="resultCount"></span>
         </div>
 
-    <div id="cards"></div>
+        <div id="cards"></div>
+      </section>
 
-    </section>
-
-    <section id="deckPage" hidden>
-
+      <section id="deckPage" hidden>
         <!-- 一覧画面 -->
         <div id="deckListPage">
           <h2>🃏 デッキ</h2>
@@ -240,14 +268,14 @@
           <div id="editorSlots"></div>
 
           <div class="deck-stats">
-  <h3>📊 デッキステータス</h3>
+            <h3>📊 デッキステータス</h3>
 
-  <div>❤️ HP：<span id="deckHp">0</span></div>
-  <div>⚔️ Power（通常）：<span id="deckPower">0</span></div>
-  <div>🔥 Power（覚醒）：<span id="deckPowerAwakened">0</span></div>
-  <div>🛡️ Guard：<span id="deckGuard">0</span></div>
-  <div>⚡ 戦闘力：<span id="deckBattlePower">0</span></div>
-</div>
+            <div>❤️ HP：<span id="deckHp">0</span></div>
+            <div>⚔️ Power（通常）：<span id="deckPower">0</span></div>
+            <div>🔥 Power（覚醒）：<span id="deckPowerAwakened">0</span></div>
+            <div>🛡️ Guard：<span id="deckGuard">0</span></div>
+            <div>⚡ 戦闘力：<span id="deckBattlePower">0</span></div>
+          </div>
 
           <div class="deck-buttons">
             <button id="saveDeckBtn">💾 デッキを保存</button>
@@ -268,9 +296,9 @@
               />
 
               <label>
-  <input type="checkbox" id="deckOwnedOnly" />
-  所持カードのみ
-</label>
+                <input type="checkbox" id="deckOwnedOnly" />
+                所持カードのみ
+              </label>
 
               <div class="filter-row">
                 <div class="select-group">
@@ -354,7 +382,10 @@
         <h2>📝 記録</h2>
 
         <div class="record-menu-grid">
-          <button class="record-menu-button" data-record-target="collectionPage">
+          <button
+            class="record-menu-button"
+            data-record-target="collectionPage"
+          >
             <span class="record-menu-icon">📊</span>
             <span>コレクション</span>
           </button>
@@ -362,7 +393,10 @@
             <span class="record-menu-icon">📦</span>
             <span>未開封パック</span>
           </button>
-          <button class="record-menu-button" data-record-target="masterPupilPage">
+          <button
+            class="record-menu-button"
+            data-record-target="masterPupilPage"
+          >
             <span class="record-menu-icon">🎓</span>
             <span>師弟レベル</span>
           </button>
@@ -375,7 +409,9 @@
 
       <section id="collectionPage" hidden>
         <div class="subpage-header">
-          <button class="record-back-button" data-record-back>← 記録へ戻る</button>
+          <button class="record-back-button" data-record-back>
+            ← 記録へ戻る
+          </button>
           <h2>📊 コレクション</h2>
         </div>
         <div id="collectionCards"></div>
@@ -384,7 +420,9 @@
 
       <section id="unopenedPage" hidden>
         <div class="subpage-header">
-          <button class="record-back-button" data-record-back>← 記録へ戻る</button>
+          <button class="record-back-button" data-record-back>
+            ← 記録へ戻る
+          </button>
           <h2>📦 未開封パック</h2>
         </div>
         <div class="unopened-add">
@@ -396,18 +434,26 @@
 
       <section id="masterPupilPage" hidden>
         <div class="subpage-header">
-          <button class="record-back-button" data-record-back>← 記録へ戻る</button>
+          <button class="record-back-button" data-record-back>
+            ← 記録へ戻る
+          </button>
           <h2>🎓 師弟レベル</h2>
         </div>
         <div class="master-pupil-search">
-          <input type="text" id="masterPupilSearch" placeholder="キャラクター名で検索" />
+          <input
+            type="text"
+            id="masterPupilSearch"
+            placeholder="キャラクター名で検索"
+          />
         </div>
         <div id="masterPupilList"></div>
       </section>
 
       <section id="avatarPage" hidden>
         <div class="subpage-header">
-          <button class="record-back-button" data-record-back>← 記録へ戻る</button>
+          <button class="record-back-button" data-record-back>
+            ← 記録へ戻る
+          </button>
           <h2>👤 アバター設定</h2>
         </div>
         <div class="setting-card">
@@ -430,14 +476,17 @@
         </div>
       </section>
 
-
       <section id="settingsPage" hidden>
         <h2>⚙️ 設定</h2>
 
         <div class="setting-card update-card">
           <h3>💾 データ管理</h3>
 
-          <button id="backupButton" class="btn btn-primary" style="background:#2196f3;">
+          <button
+            id="backupButton"
+            class="btn btn-primary"
+            style="background: #2196f3"
+          >
             💾 バックアップ
           </button>
 
@@ -464,30 +513,40 @@
         </div>
 
         <div class="setting-card">
-  <h3>📝 修正</h3>
+          <h3>📝 修正</h3>
 
-  <button id="copyMistakeList" class="btn btn-primary">
-    📋 要修正カード一覧をコピー
-  </button>
+          <button id="copyMistakeList" class="btn btn-primary">
+            📋 要修正カード一覧をコピー
+          </button>
 
-   <button id="clearMistakeList" class="btn btn-danger">
-    🗑️ 要修正を全解除
-  </button>
-</div>
+          <button id="clearMistakeList" class="btn btn-danger">
+            🗑️ 要修正を全解除
+          </button>
+        </div>
 
-        <div class="settings-update-area">
-          <span id="latestVersion" hidden></span>
-          <span id="currentVersion" hidden></span>
+        <div class="setting-card update-card">
+          <h3>🔄 アプリ更新</h3>
+
+          <div class="setting-info">
+            <span>現在のバージョン</span>
+            <strong id="currentVersion">-</strong>
+          </div>
+
+          <div class="setting-info">
+            <span>最新バージョン</span>
+            <strong id="latestVersion">-</strong>
+          </div>
+
           <div id="updateStatus" class="update-status"></div>
+
           <button
             id="updateButton"
             class="btn btn-primary"
-            style="display: none;"
+            style="display: none"
           >
             🔄 アプリを更新
           </button>
         </div>
-
       </section>
     </main>
 
@@ -520,180 +579,176 @@
 
               <button id="showBack">裏</button>
             </div>
-            </div>
+          </div>
 
           <!-- 右 -->
 
           <div class="modal-right">
-            
-<div class="name-rarity">
-  <div class="name-rarity-top">
-    <h2 id="modalName"></h2>
+            <div class="name-rarity">
+              <div class="name-rarity-top">
+                <h2 id="modalName"></h2>
 
-    <span id="modalRarity"></span>
-  </div>
-               <label class="mistake-label">
-    <input type="checkbox" id="modalMistake">
-    要修正
-  </label>
-
+                <span id="modalRarity"></span>
+              </div>
+              <label class="mistake-label">
+                <input type="checkbox" id="modalMistake" />
+                要修正
+              </label>
             </div>
 
-              <div class="modal-form">
-    <span id="modalForm"></span>
-  </div>
+            <div class="modal-form">
+              <span id="modalForm"></span>
+            </div>
 
-<div class="owned-section">
-  <div class="owned-row">
-    <strong>所持</strong>
+            <div class="owned-section">
+              <div class="owned-row">
+                <strong>所持</strong>
 
-    <span class="count-control">
-      <button id="countMinus">－</button>
+                <span class="count-control">
+                  <button id="countMinus">－</button>
 
-      <span id="modalOwnedCount">0</span>
+                  <span id="modalOwnedCount">0</span>
 
-      <button id="countPlus">＋</button>
-    </span>
-  </div>
+                  <button id="countPlus">＋</button>
+                </span>
+              </div>
 
-  <div class="owned-row owned-options">
-    <label class="wanted-inline">
-      <input type="checkbox" id="modalWanted" />
-      探してる
-    </label>
+              <div class="owned-row owned-options">
+                <label class="wanted-inline">
+                  <input type="checkbox" id="modalWanted" />
+                  探してる
+                </label>
 
-    <label class="wanted-inline">
-      <input type="checkbox" id="modalUnopened" />
-      📦 未開封
-    </label>
-  </div>
-</div>
+                <label class="wanted-inline">
+                  <input type="checkbox" id="modalUnopened" />
+                  📦 未開封
+                </label>
+              </div>
+            </div>
 
-<div class="stats">
-  <div>
-    <strong>タイプ</strong>
-    <span id="modalType">-</span>
-  </div>
+            <div class="stats">
+              <div>
+                <strong>タイプ</strong>
+                <span id="modalType">-</span>
+              </div>
 
-  <div>
-    <strong>攻撃方法</strong>
-    <span id="modalAttackType">-</span>
-  </div>
+              <div>
+                <strong>攻撃方法</strong>
+                <span id="modalAttackType">-</span>
+              </div>
 
-  <div>
-    <strong>HP</strong>
-    <span id="modalHp">-</span>
-  </div>
+              <div>
+                <strong>HP</strong>
+                <span id="modalHp">-</span>
+              </div>
 
-  <div>
-    <strong>パワー</strong>
-    <span id="modalPower">-</span>
-  </div>
+              <div>
+                <strong>パワー</strong>
+                <span id="modalPower">-</span>
+              </div>
 
-  <div id="modalPowerAwakenedRow">
-    <strong>覚醒パワー</strong>
-    <span id="modalPowerAwakened">-</span>
-  </div>
+              <div id="modalPowerAwakenedRow">
+                <strong>覚醒パワー</strong>
+                <span id="modalPowerAwakened">-</span>
+              </div>
 
-  <div>
-    <strong>ガード</strong>
-    <span id="modalGuard">-</span>
-  </div>
+              <div>
+                <strong>ガード</strong>
+                <span id="modalGuard">-</span>
+              </div>
 
-  <div>
-    <strong>初期気力</strong>
-    <span id="modalInitialKi">-</span>
-  </div>
+              <div>
+                <strong>初期気力</strong>
+                <span id="modalInitialKi">-</span>
+              </div>
 
-  <div>
-    <strong>必殺技必要エナジー</strong>
-    <span id="modalEnergy">-</span>
-  </div>
-</div>
+              <div>
+                <strong>必殺技必要エナジー</strong>
+                <span id="modalEnergy">-</span>
+              </div>
+            </div>
+          </div>
+        </div>
 
-</div>
-</div>
+        <div class="modal-section">
+          <div class="section-title">
+            <h3>⚔️ 必殺技</h3>
 
-<div class="modal-section">
-  <div class="section-title">
-    <h3>⚔️ 必殺技</h3>
+            <h4 id="modalSpecialMove"></h4>
+          </div>
+        </div>
 
-    <h4 id="modalSpecialMove"></h4>
-  </div>
-</div>
+        <div class="modal-section" id="modalSkillSection">
+          <div class="section-title">
+            <h3>✨ スキル</h3>
 
-<div class="modal-section" id="modalSkillSection">
-  <div class="section-title">
-    <h3>✨ スキル</h3>
+            <h4 id="modalSkillName"></h4>
+          </div>
 
-    <h4 id="modalSkillName"></h4>
-  </div>
+          <p id="modalSkillEffect"></p>
+        </div>
 
-  <p id="modalSkillEffect"></p>
-</div>
+        <div class="modal-section" id="modalActionSection">
+          <div class="section-title">
+            <h3>⚡ アクション</h3>
 
-<div class="modal-section" id="modalActionSection">
-  <div class="section-title">
-    <h3>⚡ アクション</h3>
+            <h4 id="modalActionName"></h4>
+          </div>
 
-    <h4 id="modalActionName"></h4>
-  </div>
+          <p id="modalActionCategory"></p>
 
-  <p id="modalActionCategory"></p>
+          <p id="modalActionEffect"></p>
+        </div>
 
-  <p id="modalActionEffect"></p>
-</div>
+        <div class="modal-section" id="modalUnitSection">
+          <div class="section-title">
+            <h3>👥 ユニット</h3>
 
-<div class="modal-section" id="modalUnitSection">
-  <div class="section-title">
-    <h3>👥 ユニット</h3>
+            <h4 id="modalUnitName"></h4>
+          </div>
 
-    <h4 id="modalUnitName"></h4>
-  </div>
+          <p id="modalUnitCharacters"></p>
 
-  <p id="modalUnitCharacters"></p>
+          <p id="modalUnitEffect"></p>
+        </div>
 
-  <p id="modalUnitEffect"></p>
-</div>
+        <div class="modal-section" id="modalBuppaSection">
+          <div class="section-title">
+            <h3>💥 BUPPA</h3>
 
-<div class="modal-section" id="modalBuppaSection">
-  <div class="section-title">
-    <h3>💥 BUPPA</h3>
+            <h4 id="modalBuppaName"></h4>
+          </div>
 
-    <h4 id="modalBuppaName"></h4>
-  </div>
+          <p id="modalBuppaEffect"></p>
+        </div>
 
-  <p id="modalBuppaEffect"></p>
-</div>
+        <div class="modal-section" id="modalSpecialRuleSection">
+          <div class="section-title">
+            <h3>📜 特殊ルール</h3>
 
-<div class="modal-section" id="modalSpecialRuleSection">
-  <div class="section-title">
-    <h3>📜 特殊ルール</h3>
+            <h4 id="modalSpecialRule"></h4>
+          </div>
+        </div>
 
-    <h4 id="modalSpecialRule"></h4>
-  </div>
-</div>
+        <div class="modal-section" id="modalAcquisitionSection">
+          <div class="section-title">
+            <h3>🎁 入手方法</h3>
+          </div>
 
-<div class="modal-section" id="modalAcquisitionSection">
-  <div class="section-title">
-    <h3>🎁 入手方法</h3>
-  </div>
+          <p id="modalAcquisition"></p>
+        </div>
 
-  <p id="modalAcquisition"></p>
-</div>
+        <div class="modal-section">
+          <h3>📝 メモ</h3>
 
-<div class="modal-section">
-  <h3>📝 メモ</h3>
-
-  <textarea
-    id="modalMemo"
-    rows="4"
-    placeholder="自由にメモできます"
-  ></textarea>
-</div>
-
-</div>
-</div>
+          <textarea
+            id="modalMemo"
+            rows="4"
+            placeholder="自由にメモできます"
+          ></textarea>
+        </div>
+      </div>
+    </div>
 
     <nav class="bottom-nav">
       <button id="tabCards" class="active" title="カード">📖</button>
@@ -703,7 +758,7 @@
     </nav>
 
     <div id="excelImportModal" class="modal" hidden>
-  <div class="modal-content">
+      <div class="modal-content">
         <h2>📄 Excel読込確認</h2>
 
         <div id="excelImportList"></div>
@@ -714,340 +769,262 @@
           <button id="excelImportCancelButton">キャンセル</button>
         </div>
       </div>
+    </div>
 
-      </div>
+    <script src="js/core/storage.js"></script>
 
-      <script src="js/core/storage.js"></script>
+    <script src="js/ui/cardFilters.js"></script>
+    <script src="js/ui/cardDetailModal.js"></script>
 
-      <script src="js/ui/cardFilters.js"></script>
-      <script src="js/ui/cardDetailModal.js"></script>
+    <script src="js/pages/cardsPage.js"></script>
+    <script src="js/pages/collectionPage.js"></script>
+    <script src="js/pages/decksPage.js"></script>
+    <script src="js/pages/unopenedPage.js"></script>
+    <script src="js/pages/masterPupilPage.js"></script>
+    <script src="js/core/navigation.js"></script>
 
-      <script src="js/pages/cardsPage.js"></script>
-      <script src="js/pages/collectionPage.js"></script>
-      <script src="js/pages/decksPage.js"></script>
-      <script src="js/pages/unopenedPage.js"></script>
-<script src="js/pages/masterPupilPage.js"></script>
-      <script src="js/core/navigation.js"></script>
+    <script src="js/settings/backup.js"></script>
+    <script src="js/settings/excelImport.js"></script>
 
-      <script src="js/settings/backup.js"></script>
-      <script src="js/settings/excelImport.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
 
-      <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@3.0.3/dist/jspdf.umd.min.js"></script>
 
-      <script src="https://cdn.jsdelivr.net/npm/jspdf@3.0.3/dist/jspdf.umd.min.js"></script>
+    <script>
+      window.waitingWorker = null;
+      window.serviceWorkerRegistration = null;
 
-<script>
-  window.waitingWorker = null;
-  window.serviceWorkerRegistration = null;
+      const APP_VERSION_KEY = "dbsdv-app-version";
 
-  const APP_VERSION_KEY = "dbsdv-app-version";
+      // Service Workerが切り替わったらリロード
+      navigator.serviceWorker.addEventListener("controllerchange", () => {
+        const latestVersion =
+          document.getElementById("latestVersion")?.textContent;
 
-  // Service Workerが切り替わったらリロード
-navigator.serviceWorker.addEventListener("controllerchange", () => {
-  const latestVersion =
-    document.getElementById("latestVersion")?.textContent;
+        if (latestVersion) {
+          localStorage.setItem(APP_VERSION_KEY, latestVersion);
+        }
 
-  if (latestVersion) {
-    localStorage.setItem(
-      APP_VERSION_KEY,
-      latestVersion
-    );
-  }
-
-  window.location.reload();
-});
-
-
-  // version.jsonを確認
-  async function checkAppVersion() {
-    try {
-      const response = await fetch("./version.json", {
-        cache: "no-store"
+        window.location.reload();
       });
 
-      if (!response.ok) {
-        throw new Error("version.json の取得に失敗しました");
-      }
+      // version.jsonを確認
+      async function checkAppVersion() {
+        try {
+          const response = await fetch("./version.json", {
+            cache: "no-store",
+          });
 
-      const versionData = await response.json();
+          if (!response.ok) {
+            throw new Error("version.json の取得に失敗しました");
+          }
 
-      const latestVersion = versionData.version;
+          const versionData = await response.json();
 
-      const currentVersion =
-        localStorage.getItem(APP_VERSION_KEY);
+          const latestVersion = versionData.version;
 
-      const currentVersionElement =
-        document.getElementById("currentVersion");
+          const currentVersion = localStorage.getItem(APP_VERSION_KEY);
 
-      const latestVersionElement =
-        document.getElementById("latestVersion");
+          const currentVersionElement =
+            document.getElementById("currentVersion");
 
-      const updateStatus =
-        document.getElementById("updateStatus");
+          const latestVersionElement = document.getElementById("latestVersion");
 
-      const updateButton =
-        document.getElementById("updateButton");
+          const updateStatus = document.getElementById("updateStatus");
 
+          const updateButton = document.getElementById("updateButton");
 
-      // 最新バージョンを表示
-      if (latestVersionElement) {
-        latestVersionElement.textContent = latestVersion;
-      }
+          // 最新バージョンを表示
+          if (latestVersionElement) {
+            latestVersionElement.textContent = latestVersion;
+          }
 
+          // 初回起動
+          if (!currentVersion) {
+            localStorage.setItem(APP_VERSION_KEY, latestVersion);
 
-      // 初回起動
-      if (!currentVersion) {
+            if (currentVersionElement) {
+              currentVersionElement.textContent = latestVersion;
+            }
 
-        localStorage.setItem(
-          APP_VERSION_KEY,
-          latestVersion
-        );
+            if (updateButton) {
+              updateButton.style.display = "none";
+            }
 
-        if (currentVersionElement) {
-          currentVersionElement.textContent =
-            latestVersion;
-        }
+            if (updateStatus) {
+              updateStatus.textContent = "";
+            }
 
-        if (updateButton) {
-          updateButton.style.display = "none";
-        }
+            return;
+          }
 
-        if (updateStatus) {
-          updateStatus.textContent = "";
-        }
+          // 現在のバージョンを表示
+          if (currentVersionElement) {
+            currentVersionElement.textContent = currentVersion;
+          }
 
-        return;
-      }
+          // 初期状態は非表示
+          if (updateButton) {
+            updateButton.style.display = "none";
+          }
 
+          if (updateStatus) {
+            updateStatus.textContent = "";
+          }
 
-      // 現在のバージョンを表示
-      if (currentVersionElement) {
-        currentVersionElement.textContent =
-          currentVersion;
-      }
+          // バージョンが違えばアップデートあり
+          if (currentVersion !== latestVersion) {
+            if (updateStatus) {
+              updateStatus.textContent = "🟢 新しいバージョンがあります";
+            }
 
-
-      // 初期状態は非表示
-      if (updateButton) {
-        updateButton.style.display = "none";
-      }
-
-      if (updateStatus) {
-        updateStatus.textContent = "";
-      }
-
-
-      // バージョンが違えばアップデートあり
-      if (currentVersion !== latestVersion) {
-
-        if (updateStatus) {
-          updateStatus.textContent =
-            "🟢 新しいバージョンがあります";
-        }
-
-        if (updateButton) {
-          updateButton.style.display = "block";
+            if (updateButton) {
+              updateButton.style.display = "block";
+            }
+          }
+        } catch (error) {
+          console.error("バージョン確認エラー:", error);
         }
       }
 
-    } catch (error) {
+      // Service Worker
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", async () => {
+          try {
+            const registration = await navigator.serviceWorker.register(
+              "./service-worker.js",
+            );
 
-      console.error(
-        "バージョン確認エラー:",
-        error
-      );
+            window.serviceWorkerRegistration = registration;
 
-    }
-  }
+            // 起動時に更新確認
+            await registration.update();
 
+            // 新しいService Workerを検知
+            registration.addEventListener("updatefound", () => {
+              const newWorker = registration.installing;
 
-  // Service Worker
-  if ("serviceWorker" in navigator) {
+              if (!newWorker) return;
 
-    window.addEventListener("load", async () => {
-
-      try {
-
-        const registration =
-          await navigator.serviceWorker.register(
-            "./service-worker.js"
-          );
-
-        window.serviceWorkerRegistration =
-          registration;
-
-
-        // 起動時に更新確認
-        await registration.update();
-
-
-        // 新しいService Workerを検知
-        registration.addEventListener(
-          "updatefound",
-          () => {
-
-            const newWorker =
-              registration.installing;
-
-            if (!newWorker) return;
-
-
-            newWorker.addEventListener(
-              "statechange",
-              () => {
-
+              newWorker.addEventListener("statechange", () => {
                 if (
                   newWorker.state === "installed" &&
                   navigator.serviceWorker.controller
                 ) {
+                  window.waitingWorker = newWorker;
 
-                  window.waitingWorker =
-                    newWorker;
+                  const updateStatus = document.getElementById("updateStatus");
 
-                  const updateStatus =
-                    document.getElementById(
-                      "updateStatus"
-                    );
-
-                  const updateButton =
-                    document.getElementById(
-                      "updateButton"
-                    );
-
+                  const updateButton = document.getElementById("updateButton");
 
                   if (updateStatus) {
-                    updateStatus.textContent =
-                      "🟢 新しいバージョンがあります";
+                    updateStatus.textContent = "🟢 新しいバージョンがあります";
                   }
 
                   if (updateButton) {
-                    updateButton.style.display =
-                      "block";
+                    updateButton.style.display = "block";
                   }
-
                 }
+              });
+            });
 
-              }
-            );
-
+            // version.jsonを確認
+            await checkAppVersion();
+          } catch (error) {
+            console.error("Service Worker registration failed:", error);
           }
-        );
-
-
-        // version.jsonを確認
-        await checkAppVersion();
-
-      } catch (error) {
-
-        console.error(
-          "Service Worker registration failed:",
-          error
-        );
-
+        });
       }
 
-    });
+      // アップデートボタン
+      document.addEventListener("DOMContentLoaded", () => {
+        const updateButton = document.getElementById("updateButton");
 
-  }
+        if (!updateButton) return;
 
+        updateButton.addEventListener("click", async () => {
+          const registration = window.serviceWorkerRegistration;
 
-  // アップデートボタン
-document.addEventListener("DOMContentLoaded", () => {
-  const updateButton =
-    document.getElementById("updateButton");
+          if (!registration) {
+            console.error("Service Workerが登録されていません");
+            return;
+          }
 
-  if (!updateButton) return;
+          updateButton.disabled = true;
+          updateButton.textContent = "🔄 更新中...";
 
-  updateButton.addEventListener("click", async () => {
-    const registration =
-      window.serviceWorkerRegistration;
+          try {
+            // 最新のService Workerを確認
+            await registration.update();
 
-    if (!registration) {
-      console.error("Service Workerが登録されていません");
-      return;
-    }
+            const worker = registration.waiting || window.waitingWorker;
 
-    updateButton.disabled = true;
-    updateButton.textContent = "🔄 更新中...";
+            if (!worker) {
+              console.warn("更新待ちのService Workerがありません");
 
-    try {
-      // 最新のService Workerを確認
-      await registration.update();
+              updateButton.disabled = false;
+              updateButton.textContent = "🏠 アップデート";
+              return;
+            }
 
-      const worker =
-        registration.waiting ||
-        window.waitingWorker;
+            // 最新バージョンを取得
+            const latestVersion =
+              document.getElementById("latestVersion")?.textContent;
 
-      if (!worker) {
-        console.warn("更新待ちのService Workerがありません");
+            // 現在バージョンを最新に更新
+            if (latestVersion) {
+              localStorage.setItem(APP_VERSION_KEY, latestVersion);
+            }
 
-        updateButton.disabled = false;
-        updateButton.textContent = "🏠 アップデート";
-        return;
-      }
+            // ボタンを消す
+            updateButton.style.display = "none";
 
-      // 最新バージョンを取得
-      const latestVersion =
-        document.getElementById("latestVersion")?.textContent;
+            const updateStatus = document.getElementById("updateStatus");
 
-      // 現在バージョンを最新に更新
-      if (latestVersion) {
-        localStorage.setItem(
-          APP_VERSION_KEY,
-          latestVersion
-        );
-      }
+            if (updateStatus) {
+              updateStatus.textContent = "✅ アップデートしました";
+            }
 
-      // ボタンを消す
-      updateButton.style.display = "none";
+            // 新しいService Workerを有効化
+            worker.postMessage({
+              type: "SKIP_WAITING",
+            });
+          } catch (error) {
+            console.error("アップデート失敗:", error);
 
-      const updateStatus =
-        document.getElementById("updateStatus");
-
-      if (updateStatus) {
-        updateStatus.textContent = "✅ アップデートしました";
-      }
-
-      // 新しいService Workerを有効化
-      worker.postMessage({
-        type: "SKIP_WAITING"
+            updateButton.disabled = false;
+            updateButton.textContent = "🏠 アップデート";
+          }
+        });
       });
+    </script>
 
-    } catch (error) {
-      console.error("アップデート失敗:", error);
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const advancedButton = document.getElementById("homeAdvancedButton");
+        const advancedFilters = document.getElementById("advancedFilters");
 
-      updateButton.disabled = false;
-      updateButton.textContent = "🏠 アップデート";
-    }
-  });
-});
-</script>
+        if (advancedButton && advancedFilters) {
+          advancedButton.addEventListener("click", () => {
+            advancedFilters.hidden = !advancedFilters.hidden;
+          });
+        }
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const advancedButton = document.getElementById("homeAdvancedButton");
-    const advancedFilters = document.getElementById("advancedFilters");
+        document.querySelectorAll(".record-menu-button").forEach((button) => {
+          button.addEventListener("click", () => {
+            const pageId = button.dataset.recordTarget;
+            if (typeof showPage === "function")
+              showPage(pageId, "tabCollection");
+          });
+        });
 
-    if (advancedButton && advancedFilters) {
-      advancedButton.addEventListener("click", () => {
-        advancedFilters.hidden = !advancedFilters.hidden;
+        document.querySelectorAll("[data-record-back]").forEach((button) => {
+          button.addEventListener("click", () => {
+            if (typeof showPage === "function")
+              showPage("recordPage", "tabCollection");
+          });
+        });
       });
-    }
-
-    document.querySelectorAll(".record-menu-button").forEach((button) => {
-      button.addEventListener("click", () => {
-        const pageId = button.dataset.recordTarget;
-        if (typeof showPage === "function") showPage(pageId, "tabCollection");
-      });
-    });
-
-    document.querySelectorAll("[data-record-back]").forEach((button) => {
-      button.addEventListener("click", () => {
-        if (typeof showPage === "function") showPage("recordPage", "tabCollection");
-      });
-    });
-  });
-</script>
-
+    </script>
   </body>
 </html>
