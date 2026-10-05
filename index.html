@@ -86,7 +86,7 @@
               <span>コンプリート率</span>
               <div class="home-progress-label-right">
                 <strong id="homeCompletionRate">0%</strong>
-                <button id="homeSeriesDetailButton" class="home-series-detail-button" type="button">▶ 詳細</button>
+                <button id="homeSeriesDetailButton" class="home-series-detail-button" type="button" onclick="renderHomeSeriesDetail()">▶ 詳細</button>
               </div>
             </div>
             <div class="home-progress-bar">
@@ -148,8 +148,7 @@
             </button>
           </div>
 
-          <details class="advanced-filters">
-            <summary aria-hidden="true"></summary>
+          <div id="advancedFilters" class="advanced-filters" hidden>
             <div class="filter-row">
               <div class="select-group">
                 <label class="home-select-wrap">
@@ -206,7 +205,7 @@
             <div class="print-row">
               <button id="pdfCardsButton">📄 PDF</button>
             </div>
-          </details>
+          </div>
         </section>
 
         <div class="home-card-list-heading">
@@ -1026,24 +1025,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    const advancedFilters = document.querySelector(".advanced-filters");
-
-    if (!advancedFilters) return;
-
-    if (window.innerWidth <= 700) {
-      advancedFilters.removeAttribute("open");
-    }
-  });
-</script>
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
     const advancedButton = document.getElementById("homeAdvancedButton");
-    const advancedFilters = document.querySelector(".advanced-filters");
+    const advancedFilters = document.getElementById("advancedFilters");
 
     if (advancedButton && advancedFilters) {
       advancedButton.addEventListener("click", () => {
-        advancedFilters.open = !advancedFilters.open;
+        advancedFilters.hidden = !advancedFilters.hidden;
       });
     }
 

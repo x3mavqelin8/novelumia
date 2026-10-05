@@ -70,6 +70,8 @@ function renderHomeSeriesDetail(series = latestSeries || "12弾") {
 }
 
 
+window.renderHomeSeriesDetail = renderHomeSeriesDetail;
+
 async function loadCards() {
   const filesResponse = await fetch("data/index.json");
   const files = await filesResponse.json();
@@ -212,7 +214,7 @@ async function loadCards() {
     promoFilter.appendChild(option);
   }
 
-  loadCardData();
+  await loadCardData();
 
   latestSeries = "12弾";
   document.getElementById("seriesFilter").value = latestSeries;
