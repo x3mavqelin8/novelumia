@@ -1007,21 +1007,101 @@
           }
 
           try {
-            await registration.update();
+            // すでに待機中のService Workerがあれば、それを使う
+            let worker = registration.waiting;
 
-            const worker = registration.waiting || window.waitingWorker;
-
+            // 待機中でなければ、新しいService Workerのインストールを待つ
             if (!worker) {
-              console.warn("更新待ちのService Workerがありません");
+              worker = await new Promise((resolve, reject) => {
+                let settled = false;
 
-              if (button) {
-                button.disabled = false;
-                button.textContent = "🔄 今すぐ更新";
-              }
+                const finish = (result, error = null) => {
+                  if (settled) return;
 
-              return;
+                  settled = true;
+
+                  if (error) {
+                    reject(error);
+                  } else {
+                    resolve(result);
+                  }
+                };
+
+                // 新しいService Workerが見つかったとき
+                const handleUpdateFound = () => {
+                  const installingWorker = registration.installing;
+
+                  if (!installingWorker) return;
+
+                  installingWorker.addEventListener("statechange", () => {
+                    console.log(
+                      "Service Worker state:",
+                      installingWorker.state,
+                    );
+
+                    if (installingWorker.state === "installed") {
+                      window.waitingWorker = installingWorker;
+
+                      finish(installingWorker);
+                    }
+                  });
+                };
+
+                registration.addEventListener(
+                  "updatefound",
+                  handleUpdateFound,
+                  { once: true },
+                );
+
+                // 最新版を確認
+                registration
+                  .update()
+                  .then(() => {
+                    // update()後、すでにwaitingになっていた場合
+                    if (registration.waiting) {
+                      finish(registration.waiting);
+                      return;
+                    }
+
+                    // installingがすでに存在している場合
+                    if (registration.installing) {
+                      const installingWorker = registration.installing;
+
+                      installingWorker.addEventListener("statechange", () => {
+                        console.log(
+                          "Service Worker state:",
+                          installingWorker.state,
+                        );
+
+                        if (installingWorker.state === "installed") {
+                          window.waitingWorker = installingWorker;
+
+                          finish(installingWorker);
+                        }
+                      });
+
+                      return;
+                    }
+                  })
+                  .catch((error) => {
+                    finish(null, error);
+                  });
+
+                // 10秒以上かかった場合
+                setTimeout(() => {
+                  if (!settled) {
+                    finish(
+                      null,
+                      new Error(
+                        "Service Workerの更新準備がタイムアウトしました",
+                      ),
+                    );
+                  }
+                }, 10000);
+              });
             }
 
+            // 最新バージョンを保存
             const latestVersion =
               document.getElementById("latestVersion")?.textContent;
 
@@ -1029,12 +1109,14 @@
               localStorage.setItem(APP_VERSION_KEY, latestVersion);
             }
 
+            // ポップアップを閉じる
             const updatePopup = document.getElementById("updatePopup");
 
             if (updatePopup) {
               updatePopup.hidden = true;
             }
 
+            // 新しいService Workerを有効化
             worker.postMessage({
               type: "SKIP_WAITING",
             });
@@ -1044,6 +1126,13 @@
             if (button) {
               button.disabled = false;
               button.textContent = "🔄 今すぐ更新";
+            }
+
+            const updateStatus = document.getElementById("updateStatus");
+
+            if (updateStatus) {
+              updateStatus.textContent =
+                "⚠️ 更新に失敗しました。もう一度お試しください。";
             }
           }
         }
