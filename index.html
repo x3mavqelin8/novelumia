@@ -550,6 +550,32 @@
       </section>
     </main>
 
+    <!-- アプリ更新ポップアップ -->
+    <div id="updatePopup" class="update-popup" hidden>
+      <div class="update-popup-content">
+        <div class="update-popup-icon">🔄</div>
+        <h3>新しいバージョンがあります</h3>
+        <p>最新版に更新できます。</p>
+
+        <div class="update-popup-version">
+          <span>現在</span>
+          <strong id="popupCurrentVersion">-</strong>
+          <span>→</span>
+          <span>最新</span>
+          <strong id="popupLatestVersion">-</strong>
+        </div>
+
+        <div class="update-popup-buttons">
+          <button id="popupUpdateButton" class="btn btn-primary">
+            🔄 今すぐ更新
+          </button>
+          <button id="popupLaterButton" class="btn btn-secondary">
+            あとで
+          </button>
+        </div>
+      </div>
+    </div>
+
     <!-- モーダル -->
 
     <div id="cardModal" class="modal">
@@ -881,6 +907,28 @@
             if (updateButton) {
               updateButton.style.display = "block";
             }
+
+            // 更新ポップアップを表示
+            const updatePopup = document.getElementById("updatePopup");
+
+            const popupCurrentVersion = document.getElementById(
+              "popupCurrentVersion",
+            );
+
+            const popupLatestVersion =
+              document.getElementById("popupLatestVersion");
+
+            if (popupCurrentVersion) {
+              popupCurrentVersion.textContent = currentVersion;
+            }
+
+            if (popupLatestVersion) {
+              popupLatestVersion.textContent = latestVersion;
+            }
+
+            if (updatePopup) {
+              updatePopup.hidden = false;
+            }
           }
         } catch (error) {
           console.error("バージョン確認エラー:", error);
@@ -940,9 +988,12 @@
       document.addEventListener("DOMContentLoaded", () => {
         const updateButton = document.getElementById("updateButton");
 
-        if (!updateButton) return;
+        const popupUpdateButton = document.getElementById("popupUpdateButton");
 
-        updateButton.addEventListener("click", async () => {
+        const popupLaterButton = document.getElementById("popupLaterButton");
+
+        // 実際に更新する処理
+        async function performUpdate(button) {
           const registration = window.serviceWorkerRegistration;
 
           if (!registration) {
@@ -950,11 +1001,12 @@
             return;
           }
 
-          updateButton.disabled = true;
-          updateButton.textContent = "🔄 更新中...";
+          if (button) {
+            button.disabled = true;
+            button.textContent = "🔄 更新中...";
+          }
 
           try {
-            // 最新のService Workerを確認
             await registration.update();
 
             const worker = registration.waiting || window.waitingWorker;
@@ -962,40 +1014,64 @@
             if (!worker) {
               console.warn("更新待ちのService Workerがありません");
 
-              updateButton.disabled = false;
-              updateButton.textContent = "🏠 アップデート";
+              if (button) {
+                button.disabled = false;
+                button.textContent = "🔄 今すぐ更新";
+              }
+
               return;
             }
 
-            // 最新バージョンを取得
             const latestVersion =
               document.getElementById("latestVersion")?.textContent;
 
-            // 現在バージョンを最新に更新
             if (latestVersion) {
               localStorage.setItem(APP_VERSION_KEY, latestVersion);
             }
 
-            // ボタンを消す
-            updateButton.style.display = "none";
+            const updatePopup = document.getElementById("updatePopup");
 
-            const updateStatus = document.getElementById("updateStatus");
-
-            if (updateStatus) {
-              updateStatus.textContent = "✅ アップデートしました";
+            if (updatePopup) {
+              updatePopup.hidden = true;
             }
 
-            // 新しいService Workerを有効化
             worker.postMessage({
               type: "SKIP_WAITING",
             });
           } catch (error) {
-            console.error("アップデート失敗:", error);
+            console.error("アプリ更新エラー:", error);
 
-            updateButton.disabled = false;
-            updateButton.textContent = "🏠 アップデート";
+            if (button) {
+              button.disabled = false;
+              button.textContent = "🔄 今すぐ更新";
+            }
           }
-        });
+        }
+
+        // 設定画面の更新ボタン
+        if (updateButton) {
+          updateButton.addEventListener("click", () =>
+            performUpdate(updateButton),
+          );
+        }
+
+        // ポップアップの「今すぐ更新」
+        if (popupUpdateButton) {
+          popupUpdateButton.addEventListener("click", () =>
+            performUpdate(popupUpdateButton),
+          );
+        }
+
+        // ポップアップの「あとで」
+        if (popupLaterButton) {
+          popupLaterButton.addEventListener("click", () => {
+            const updatePopup = document.getElementById("updatePopup");
+
+            if (updatePopup) {
+              updatePopup.hidden = true;
+            }
+          });
+        }
       });
     </script>
 
